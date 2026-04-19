@@ -95,7 +95,7 @@ function applyTheme(theme) {
 }
 
 function initTheme() {
-    const saved = localStorage.getItem('ag-theme') || 'dark';
+    const saved = localStorage.getItem('ag-theme') || 'light';
     applyTheme(saved);
     const btn = document.getElementById('themeToggle');
     if (btn) {
