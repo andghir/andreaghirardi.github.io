@@ -240,7 +240,7 @@ const TRANSLATIONS = {
     'mag.typography.body':     '<p>Il sistema tipografico si costruisce attorno a quattro voci in dialogo: Space Grotesk e Bodoni Moda per i titoli, grotesk condensed e serif classico, tensione tra contemporaneità e storia, Crimson Pro per i testi narrativi, Courier per i dati d\'archivio. La scelta di Courier non è nostalgia: è un codice visivo che segnala «dato grezzo», informazione non elaborata, documento.</p><p>La stampa su carta RC kraft grigia (280 gsm per la copertina, 100 gsm per le pagine interne) restituisce un\'opacità materica che i magazine patinati non possono offrire. La rilegatura a punti fatta a mano rafforza il senso di oggetto da conservare: un archivio fisico in un\'epoca di file temporanei.</p>',
     'mag.credit.corso':        'Corso',
     'mag.credit.uni':          'Università',
-    'mag.next.title':          'GOG WUP',
+    'mag.next.title':          'Kleis',
     'work.p8.cat':             'Design editoriale',
 
     // ── GOG, WUP Visual Identity ─────────────────────────────────────────────
@@ -273,7 +273,7 @@ const TRANSLATIONS = {
     'gog.credit.gruppo':       'Gruppo',
     'gog.credit.docenti.pd':   'Docenti WUP - Product Design',
     'gog.credit.docente.desc': 'Docente Descriptive Geometry',
-    'gog.next.title':          'WhateverDev()',
+    'gog.next.title':          'Postcards from the Future',
     'work.p9.cat':             'Visual Identity &amp; Exhibition',
 
     // ── Baldinini ─────────────────────────────────────────────────────────────
@@ -561,7 +561,7 @@ const TRANSLATIONS = {
     'mag.typography.body':     '<p>The typographic system is built around four voices in dialogue: Space Grotesk and Bodoni Moda for headings, condensed grotesk and classical serif, tension between contemporaneity and history, Crimson Pro for narrative texts, Courier for archival data. The choice of Courier is not nostalgia: it is a visual code signalling raw data, unprocessed information, the document.</p><p>Printing on RC kraft grey paper (280 gsm for the cover, 100 gsm for the interior pages) produces a material opacity that glossy magazines cannot offer. The hand-crafted stitch binding reinforces the sense of an object to be preserved: a physical archive in an age of temporary files.</p>',
     'mag.credit.corso':        'Course',
     'mag.credit.uni':          'University',
-    'mag.next.title':          'GOG WUP',
+    'mag.next.title':          'Kleis',
     'work.p8.cat':             'Editorial Design',
 
     // ── GOG, WUP Visual Identity ─────────────────────────────────────────────
@@ -594,7 +594,7 @@ const TRANSLATIONS = {
     'gog.credit.gruppo':       'Group',
     'gog.credit.docenti.pd':   'WUP - Product Design Tutors',
     'gog.credit.docente.desc': 'Descriptive Geometry Tutor',
-    'gog.next.title':          'WhateverDev()',
+    'gog.next.title':          'Postcards from the Future',
     'work.p9.cat':             'Visual Identity &amp; Exhibition',
 
     // ── Baldinini ─────────────────────────────────────────────────────────────
