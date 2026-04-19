@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhateverDev() – Andrea Ghirardi</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>(function(){var t=localStorage.getItem('ag-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
+    <style>
+        /* ── WhateverDev: hero background ─────────────────────── */
+        .c-wd-red { background-color: #C80800; }
+
+        /* ── Section part divider ────────────────────────────── */
+        .project-part {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 72px 56px 0;
+        }
+        .project-part-num {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .project-part-label {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--fg);
+            flex-shrink: 0;
+        }
+        .project-part-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Stacked full-width tool sections ───────────────── */
+        .tool-stack {
+            border-top: 1px solid var(--border);
+            margin-top: 3px;
+        }
+        .tool-stack-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 28px 56px;
+            border-bottom: 1px solid var(--border);
+        }
+        .tool-stack-info { display: flex; flex-direction: column; gap: 10px; }
+        .tool-stack-num {
+            font-size: 10px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        .tool-stack-name {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--fg);
+        }
+        .tool-stack-desc {
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.65;
+            max-width: 600px;
+        }
+        .tool-stack-open {
+            flex-shrink: 0;
+            align-self: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: var(--bg);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background .25s ease;
+        }
+        .tool-stack-open:hover { background: #33D6FF; }
+        .tool-stack iframe {
+            width: 100%;
+            height: 70vh;
+            min-height: 540px;
+            border: none;
+            display: block;
+            background: var(--bg);
+        }
+        .tool-stack .iframe-placeholder {
+            width: 100%;
+            height: 70vh;
+            min-height: 540px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+        }
+        .iframe-placeholder-inner {
+            font-size: 10px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── Drawing grid: prompt + 3 drawings ──────────────── */
+        .drawings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 3px;
+        }
+        .drawing-block {
+            aspect-ratio: 2/3;
+            position: relative;
+            overflow: hidden;
+            background: #F7F5F0;
+        }
+
+        /* ── Booklet cover centred ───────────────────────────── */
+        .cover-wrap {
+            display: grid;
+            grid-template-columns: 1fr minmax(0, 440px) 1fr;
+            background: #1A0101;
+            padding: 72px 0;
+        }
+        [data-theme="light"] .cover-wrap {
+            background: var(--bg);
+        }
+        .cover-wrap .cover-inner {
+            grid-column: 2;
+            aspect-ratio: 2/3;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 120px rgba(0,0,0,.65);
+        }
+        .cover-wrap .img-bg { position: absolute; inset: 0; }
+
+        /* ── 5-column credits ────────────────────────────────── */
+        .project-meta    { grid-template-columns: repeat(5, 1fr); }
+        .project-credits { grid-template-columns: repeat(6, 1fr); }
+
+        @media (max-width: 900px) {
+            .tool-stack-header { padding: 20px 28px; flex-direction: column; gap: 16px; }
+            .tool-stack iframe { height: 60vh; min-height: 400px; }
+        }
+
+        @media (max-width: 900px) {
+            .project-part { padding: 48px 28px 0; }
+            .tools-grid { grid-template-columns: 1fr; }
+            .drawings-grid { grid-template-columns: 1fr 1fr; }
+            .cover-wrap { grid-template-columns: 1fr; padding: 48px 28px; }
+            .cover-wrap .cover-inner { grid-column: 1; max-width: 320px; margin: 0 auto; }
+            .project-meta    { grid-template-columns: 1fr 1fr 1fr; }
+            .project-credits { grid-template-columns: 1fr 1fr 1fr; }
+        }
+    </style>
+</head>
+<body class="project-page">
+
+    <div class="cursor"      id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="nav">
+        <a href="../index.html" class="nav-logo">Andrea Ghirardi</a>
+        <ul class="nav-links">
+            <li><a href="../work.html"    data-i18n="nav.work">Lavori</a></li>
+            <li><a href="../about.html"   data-i18n="nav.about">Chi sono</a></li>
+            <li><a href="../contact.html" data-i18n="nav.contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <span class="lang-sep">/</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+    </nav>
+
+    <div class="project-hero">
+        <div class="project-hero-bg c-wd-red"></div>
+        <div class="project-hero-gradient"></div>
+        <a href="../work.html" class="project-breadcrumb" data-i18n="project.back">← Tutti i lavori</a>
+        <div class="project-hero-content">
+            <p class="project-hero-num">02 / 06</p>
+            <h1 class="project-hero-title">WhateverDev()</h1>
+            <p class="project-hero-cat" data-i18n="wd.hero.cat">Vibe Coding &amp; Identity</p>
+        </div>
+    </div>
+
+    <div class="project-meta">
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="mag.meta.uni.label">Università</p>
+            <p class="meta-value">Libera Università di Bolzano</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="mag.credit.corso">Corso</p>
+            <p class="meta-value">WUP – Visual Communication</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.category">Categoria</p>
+            <p class="meta-value" data-i18n="wd.meta.cat">Vibe Coding</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="wd.meta.tools.label">Tool</p>
+            <p class="meta-value">p5.js</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.year">Anno</p>
+            <p class="meta-value">2025</p>
+        </div>
+    </div>
+
+    <div class="project-overview reveal">
+        <p class="overview-label" data-i18n="project.overview.label">Panoramica</p>
+        <p class="overview-text" data-i18n="wd.overview">
+            Nell'ultimo modulo del WUP di Visual Communication alla Libera Università di Bolzano, siamo stati introdotti alla pratica del vibe coding, un approccio in cui si descrive il comportamento visivo al codice attraverso il linguaggio naturale, lasciando che l'AI e la sintesi generativa costruiscano il risultato. Il progetto WhateverDev() è nato in questo contesto: quattro tool sviluppati con p5.js, ognuno pensato come strumento generativo e sperimentale. Il workshop è stato preceduto da una fase di disegno procedurale analogico, documentata nel booklet della visual identity del progetto.
+        </p>
+    </div>
+
+    <div class="project-toc reveal">
+        <span class="toc-heading" data-i18n="project.toc.label">In questo progetto</span>
+        <a href="#part-1" class="toc-item">
+            <span class="toc-num">01</span>
+            <span class="toc-name" data-i18n="wd.part1.label">Il workshop analogico</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-2" class="toc-item">
+            <span class="toc-num">02</span>
+            <span class="toc-name" data-i18n="wd.part2.label">I quattro tool</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-3" class="toc-item">
+            <span class="toc-num">03</span>
+            <span class="toc-name" data-i18n="wd.part3.label">Il booklet</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+    </div>
+
+    <!-- ── PARTE 01 · IL WORKSHOP ANALOGICO ──────────────────────────── -->
+
+    <div id="part-1" class="project-part reveal">
+        <span class="project-part-num">01</span>
+        <span class="project-part-label" data-i18n="wd.part1.label">Il workshop analogico</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <!-- Two workshop detail shots -->
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/whateverdev/workshop_hands.jpg'); background-size: cover; background-position: center; background-color: #1A1A1A;"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/whateverdev/workshop_spread.jpg'); background-size: cover; background-position: center; background-color: #1A1A1A;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="wd.caption.2">Disegno procedurale seguendo regole date, ogni studente interpreta le istruzioni con la propria mano</p>
+
+    <!-- Procedural drawings: prompt + 2 drawings -->
+    <div class="drawings-grid reveal" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:3px; line-height:0;">
+        <img src="images/whateverdev/drawing_prompt.jpg" alt="" style="width:100%; height:auto; display:block;">
+        <img src="images/whateverdev/drawing_food.jpg" alt="" style="width:100%; height:auto; display:block;">
+        <img src="images/whateverdev/drawing_cheese.jpg" alt="" style="width:100%; height:auto; display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="wd.caption.3">Disegni procedurali del booklet, dal prompt scritto all'interpretazione grafica</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="wd.workshop.body">
+            <p>Il workshop ha preso le mosse dall'analogico: ogni studente riceveva un prompt scritto con istruzioni precise, disegna il tuo cibo preferito tenendo la penna in bocca, scrivi l'alfabeto al contrario, e doveva eseguirle letteralmente. L'obiettivo era capire cosa significa dare istruzioni a un sistema che non interpreta, ma esegue.</p>
+            <p>Questa fase ha gettato le basi concettuali per il vibe coding: anche nel codice, la macchina esegue ciò che le si descrive, con la differenza che il linguaggio è formale e il risultato visivo emerge dall'interazione tra logica e parametro. I disegni sono stati raccolti e pubblicati nel booklet visivo del progetto.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 02 · I QUATTRO TOOL ─────────────────────────────────── -->
+
+    <div id="part-2" class="project-part reveal">
+        <span class="project-part-num">02</span>
+        <span class="project-part-label" data-i18n="wd.part2.label">I quattro tool</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <!-- Tool 01 -->
+    <div class="tool-stack">
+        <div class="tool-stack-header">
+            <div class="tool-stack-info">
+                <span class="tool-stack-num" data-i18n="wd.tool1.num">Brush</span>
+                <span class="tool-stack-name">Chemical Reactor</span>
+                <span class="tool-stack-desc" data-i18n="wd.tool1.desc">Simulazione di reazione di Turing, pattern organici che emergono dall'equilibrio tra attivatore e inibitore</span>
+            </div>
+            <a href="tools/chemical-reactor/index.html" target="_blank" class="tool-stack-open" data-i18n="wd.tool.open">Open in full screen →</a>
+        </div>
+        <div class="iframe-placeholder" data-iframe-src="tools/chemical-reactor/index.html">
+            <span class="iframe-placeholder-inner">Scorri per caricare</span>
+        </div>
+    </div>
+
+    <!-- Tool 02 -->
+    <div class="tool-stack">
+        <div class="tool-stack-header">
+            <div class="tool-stack-info">
+                <span class="tool-stack-num" data-i18n="wd.tool2.num">Gif</span>
+                <span class="tool-stack-name">Kinetic Moiré Generator</span>
+                <span class="tool-stack-desc" data-i18n="wd.tool2.desc">Generatore di pattern moiré cinetici animati, interferenza visiva tra griglie in movimento</span>
+            </div>
+            <a href="tools/moire/index.html" target="_blank" class="tool-stack-open" data-i18n="wd.tool.open">Open in full screen →</a>
+        </div>
+        <div class="iframe-placeholder" data-iframe-src="tools/moire/index.html">
+            <span class="iframe-placeholder-inner">Scorri per caricare</span>
+        </div>
+    </div>
+
+    <!-- Tool 03 -->
+    <div class="tool-stack">
+        <div class="tool-stack-header">
+            <div class="tool-stack-info">
+                <span class="tool-stack-num" data-i18n="wd.tool3.num">Type</span>
+                <span class="tool-stack-name">Kinetic Type</span>
+                <span class="tool-stack-desc" data-i18n="wd.tool3.desc">Displacement sinusoidale del testo, i caratteri vengono deformati in superfici tridimensionali</span>
+            </div>
+            <a href="tools/kinetic-type/index.html" target="_blank" class="tool-stack-open" data-i18n="wd.tool.open">Open in full screen →</a>
+        </div>
+        <div class="iframe-placeholder" data-iframe-src="tools/kinetic-type/index.html">
+            <span class="iframe-placeholder-inner">Scorri per caricare</span>
+        </div>
+    </div>
+
+    <!-- Tool 04 -->
+    <div class="tool-stack">
+        <div class="tool-stack-header">
+            <div class="tool-stack-info">
+                <span class="tool-stack-num" data-i18n="wd.tool4.num">Raster</span>
+                <span class="tool-stack-name">Risograph Print</span>
+                <span class="tool-stack-desc" data-i18n="wd.tool4.desc">Simulazione di stampa risografica a punti, conversione dell'immagine in halftone bicolore con separazione cromatica</span>
+            </div>
+            <a href="tools/risograph/index.html" target="_blank" class="tool-stack-open" data-i18n="wd.tool.open">Open in full screen →</a>
+        </div>
+        <div class="iframe-placeholder" data-iframe-src="tools/risograph/index.html">
+            <span class="iframe-placeholder-inner">Scorri per caricare</span>
+        </div>
+    </div>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.process.label">Processo</p>
+        <div class="project-text-body" data-i18n="wd.tools.body">
+            <p>Ogni tool è stato costruito partendo da una domanda visiva precisa: cosa succede se simulo una reazione chimica? Come si comporta il testo quando diventa superficie? I quattro strumenti sono stati sviluppati con p5.js attraverso il vibe coding, descrivendo il comportamento desiderato al modello e raffinando il risultato iterativamente.</p>
+            <p>Il processo ha reso evidente come il codice, quando usato come mezzo espressivo, richieda lo stesso tipo di intenzione del disegno a mano: bisogna sapere cosa si vuole prima di descriverlo. La differenza è che l'output è parametrico e infinitamente variabile.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 03 · IL BOOKLET ──────────────────────────────────────── -->
+
+    <div id="part-3" class="project-part reveal">
+        <span class="project-part-num">03</span>
+        <span class="project-part-label" data-i18n="wd.part3.label">Il booklet</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <!-- Cover centred -->
+    <div class="cover-wrap reveal">
+        <div class="cover-inner">
+            <div class="img-bg" style="background-image: url('images/whateverdev/booklet_01.jpg'); background-size: cover; background-position: center top;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="wd.caption.4">whateverDev(), copertina del booklet di visual identity del progetto</p>
+
+    <!-- Booklet spread 04-05 -->
+    <div class="reveal" style="line-height:0;">
+        <img src="images/whateverdev/booklet_04-05.jpg" alt="" style="width:100%; height:auto; display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="wd.caption.6">Pagine 4–5, First day: Procedural thinking and foundations of coding</p>
+
+    <!-- Booklet spread 08-09 -->
+    <div class="reveal" style="line-height:0;">
+        <img src="images/whateverdev/booklet_08-09.jpg" alt="" style="width:100%; height:auto; display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="wd.caption.7">Pagine 8–9, End of Workshop Questionnaire: dati su controllo e authorship</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="wd.booklet.body">
+            <p>Il booklet raccoglie e documenta l'intero percorso del workshop: i prompt, i disegni procedurali degli studenti e gli output dei quattro tool. La copertina riprende il "Chaos Engine", un disegno realizzato seguendo le regole del Whatever Development Ecosystem, e lo stampa in nero su fondo rosso, stabilendo un'identità visiva diretta e riconoscibile.</p>
+            <p>Il progetto è stato sviluppato all'interno del Whatever Development Ecosystem, un framework didattico e creativo ideato da Michele Maffei per esplorare il confine tra regola e generazione, tra istruzione umana e output computazionale.</p>
+        </div>
+    </div>
+
+    <div class="project-credits reveal">
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="mag.credit.uni">Università</p>
+            <p class="credit-name">Libera Università di Bolzano</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="mag.credit.corso">Corso</p>
+            <p class="credit-name">WUP – Visual Communication</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="wd.credit.facilitatori">Facilitatori</p>
+            <p class="credit-name">Antonino Benincasa<br>Rocco Lorenzo Modugno<br>Andrea Maffei</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.photo">Fotografia</p>
+            <p class="credit-name">Andrea Maffei</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="wd.credit.ecosystem">Whatever Development Ecosystem</p>
+            <p class="credit-name">Michele Maffei</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.year">Anno</p>
+            <p class="credit-name">2025</p>
+        </div>
+    </div>
+
+    <a href="gog.html" class="next-project reveal">
+        <div>
+            <p class="next-label" data-i18n="project.next.label">Prossimo progetto</p>
+            <p class="next-title" data-i18n="wd.next.title">GOG WUP</p>
+        </div>
+        <span class="next-arrow">→</span>
+    </a>
+
+    <footer>
+        <p>© 2026 Andrea Ghirardi</p>
+        <p data-i18n="footer.tagline">Progettato con cura</p>
+        <p><a href="../work.html" style="color:inherit;text-decoration:none;opacity:.6;" data-i18n="project.all">← Tutti i progetti</a></p>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav-links">
+        <a href="../work.html" data-i18n="nav.work">Lavori</a>
+        <a href="../about.html" data-i18n="nav.about">Chi sono</a>
+        <a href="../contact.html" data-i18n="nav.contact">Contatti</a>
+    </nav>
+</div>
+
+    <script src="../translations.js"></script>
+    <script src="../script.js"></script>
+    <script>
+        // Lazy-load iframes: only start p5.js when the placeholder enters the viewport
+        const iframeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const placeholder = entry.target;
+                const src = placeholder.dataset.iframeSrc;
+                if (!src) return;
+                const iframe = document.createElement('iframe');
+                iframe.src = src;
+                iframe.title = placeholder.closest('.tool-stack')
+                    ?.querySelector('.tool-stack-name')?.textContent || '';
+                iframe.setAttribute('allowfullscreen', '');
+                placeholder.replaceWith(iframe);
+                iframeObserver.unobserve(placeholder);
+            });
+        }, { rootMargin: '200px 0px' });
+
+        document.querySelectorAll('.iframe-placeholder').forEach(el => {
+            iframeObserver.observe(el);
+        });
+    </script>
+</body>
+</html>

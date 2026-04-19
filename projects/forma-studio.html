@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma Studio - Andrea Ghirardi</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>(function(){var t=localStorage.getItem('ag-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
+    <style>
+        .c1 { background-color: #1C2B3A; }
+        .c2 { background-color: #243547; }
+        .c3 { background-color: #1A2635; }
+        .c4 { background-color: #2C3F52; }
+        .c5 { background-color: #14202E; }
+    </style>
+</head>
+<body>
+
+    <div class="cursor"      id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="nav">
+        <a href="../index.html" class="nav-logo">Andrea Ghirardi</a>
+        <ul class="nav-links">
+            <li><a href="../work.html"    data-i18n="nav.work">Lavori</a></li>
+            <li><a href="../about.html"   data-i18n="nav.about">Chi sono</a></li>
+            <li><a href="../contact.html" data-i18n="nav.contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <span class="lang-sep">/</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <!-- Hero -->
+    <div class="project-hero">
+        <div class="project-hero-bg c1"></div>
+        <div class="project-hero-gradient"></div>
+        <a href="../work.html" class="project-breadcrumb" data-i18n="project.back">← Back to Work</a>
+        <div class="project-hero-content">
+            <p class="project-hero-num">01 / 06</p>
+            <h1 class="project-hero-title">Forma<br>Studio</h1>
+            <p class="project-hero-cat" data-i18n="forma.hero.cat">Brand Identity &amp; Sistema visivo</p>
+        </div>
+    </div>
+
+    <!-- Metadata -->
+    <div class="project-meta">
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.client">Client</p>
+            <p class="meta-value">Forma Architecture</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.year">Year</p>
+            <p class="meta-value">2024</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.category">Category</p>
+            <p class="meta-value">Brand Identity</p>
+        </div>
+    </div>
+
+    <!-- Overview -->
+    <div class="project-overview reveal">
+        <p class="overview-label" data-i18n="project.overview.label">Overview</p>
+        <p class="overview-text" data-i18n="forma.overview">
+            Forma Studio aveva bisogno di un'identità tanto rigorosa e raffinata quanto la loro architettura, un sistema costruito sulla geometria, la misura e un'autorità silenziosa.
+        </p>
+    </div>
+
+    <!-- Hero image -->
+    <div class="img-full reveal">
+        <div class="img-bg c2"></div>
+        <p class="img-ph">Primary Logo &amp; Wordmark</p>
+    </div>
+    <p class="img-caption reveal" data-i18n="forma.caption.1">Logo principale e wordmark, sostituisci con la tua immagine</p>
+
+    <!-- Two images -->
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c3"></div>
+            <p class="img-ph">Business Cards</p>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c4"></div>
+            <p class="img-ph">Letterhead</p>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="forma.caption.2">Sistema di cancelleria, biglietti da visita e carta intestata</p>
+
+    <!-- Text block -->
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="forma.approach.body">
+            <p>The identity centres on a geometric mark derived from the section of a classical column, reduced to its essential geometry, then refined to feel contemporary. The wordmark uses a custom-drawn serif that bridges the gap between tradition and precision.</p>
+            <p>A strict two-tone palette, deep architectural blue and warm ivory, anchors the system across print, digital, and environmental applications. Every touchpoint from business cards to site hoardings follows the same strict proportional system.</p>
+        </div>
+    </div>
+
+    <!-- Asymmetric images -->
+    <div class="img-row img-row-2-asym reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c1"></div>
+            <p class="img-ph">Brand in Use</p>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c5"></div>
+            <p class="img-ph">Detail / Texture</p>
+        </div>
+    </div>
+
+    <!-- Three images -->
+    <div class="img-row img-row-3 reveal">
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg c4"></div>
+            <p class="img-ph">Colour Palette</p>
+        </div>
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg c2"></div>
+            <p class="img-ph">Typography</p>
+        </div>
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg c3"></div>
+            <p class="img-ph">Pattern / Texture</p>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="forma.caption.3">Elementi identitari, colore, tipografia, texture</p>
+
+    <!-- Wide final image -->
+    <div class="img-full-tall reveal">
+        <div class="img-bg c5"></div>
+        <p class="img-ph">Environmental / Signage Application</p>
+    </div>
+    <p class="img-caption reveal" data-i18n="forma.caption.4">Applicazione ambientale e segnaletica</p>
+
+    <!-- Credits -->
+    <div class="project-credits reveal">
+        <div class="credit-item">
+            <p class="credit-role">Design</p>
+            <p class="credit-name">Andrea Ghirardi</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.photo">Photography</p>
+            <p class="credit-name">,</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.client">Client</p>
+            <p class="credit-name">Forma Architecture</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.year">Year</p>
+            <p class="credit-name">2024</p>
+        </div>
+    </div>
+
+    <!-- Next project -->
+    <a href="revue.html" class="next-project reveal">
+        <div>
+            <p class="next-label" data-i18n="project.next.label">Next Project</p>
+            <p class="next-title" data-i18n="forma.next.title">Revue</p>
+        </div>
+        <span class="next-arrow">→</span>
+    </a>
+
+    <footer>
+        <p>© 2026 Andrea Ghirardi</p>
+        <p data-i18n="footer.tagline">Progettato con cura</p>
+        <p><a href="../work.html" style="color:inherit;text-decoration:none;opacity:.6;" data-i18n="project.all">← All Projects</a></p>
+    </footer>
+
+    <script src="../translations.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

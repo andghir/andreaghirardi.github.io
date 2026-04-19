@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kleis - Andrea Ghirardi</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>(function(){var t=localStorage.getItem('ag-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
+    <style>
+        .c-oxford   { background-color: #22273D; }
+        .c-cream    { background-color: #F5F0EC; }
+        .c-sand     { background-color: #EDE8E0; }
+        .c-stone    { background-color: #D8D0C4; }
+        .c-warm     { background-color: #8B7A6A; }
+        .c-render   { background-color: #EBEBEB; }
+
+        /* Section part divider */
+        .project-part {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 72px 56px 0;
+        }
+
+        .project-part-num {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .project-part-label {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--fg);
+            flex-shrink: 0;
+        }
+
+        .project-part-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Contain sizing for product renders on neutral bg */
+        .img-bg-contain {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .project-meta { grid-template-columns: repeat(5, 1fr); }
+
+        @media (max-width: 900px) {
+            .project-part { padding: 48px 28px 0; }
+            .project-meta { grid-template-columns: 1fr 1fr 1fr; }
+        }
+    </style>
+</head>
+<body class="project-page">
+
+    <div class="cursor"      id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="nav">
+        <a href="../index.html" class="nav-logo">Andrea Ghirardi</a>
+        <ul class="nav-links">
+            <li><a href="../work.html"    data-i18n="nav.work">Lavori</a></li>
+            <li><a href="../about.html"   data-i18n="nav.about">Chi sono</a></li>
+            <li><a href="../contact.html" data-i18n="nav.contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <span class="lang-sep">/</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+    </nav>
+
+    <div class="project-hero">
+        <div class="project-hero-bg c-oxford"></div>
+        <div class="project-hero-gradient"></div>
+        <a href="../work.html" class="project-breadcrumb" data-i18n="project.back">← Tutti i lavori</a>
+        <div class="project-hero-content">
+            <p class="project-hero-num">05 / 06</p>
+            <h1 class="project-hero-title">Kleis</h1>
+            <p class="project-hero-cat" data-i18n="kleis.hero.cat">Brand Identity &amp; Product Design</p>
+        </div>
+    </div>
+
+    <div class="project-meta">
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.client">Cliente</p>
+            <p class="meta-value">Kleis</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="kleis.credit.agency">Agenzia</p>
+            <p class="meta-value">Voxart</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="mag.meta.uni.label">Università</p>
+            <p class="meta-value">ITS Academy Machina Lonati</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.category">Categoria</p>
+            <p class="meta-value" data-i18n="kleis.meta.cat">Brand Identity &amp; Product Design</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.year">Anno</p>
+            <p class="meta-value">2024</p>
+        </div>
+    </div>
+
+    <div class="project-overview reveal">
+        <p class="overview-label" data-i18n="project.overview.label">Panoramica</p>
+        <p class="overview-text" data-i18n="kleis.overview">
+            Progetto di tesi sviluppato durante il biennio 2022/24 all'ITS Academy Machina Lonati, in collaborazione con Voxart, l'agenzia di comunicazione dove ho svolto il tirocinio. Il progetto si articola in due parti: la ridefinizione dell'identità visiva di Kleis, azienda specializzata nella produzione di maniglie di design, e la progettazione di Versa, una maniglia modulare inclusiva pensata per un'utenza universale.
+        </p>
+    </div>
+
+    <div class="project-toc reveal">
+        <span class="toc-heading" data-i18n="project.toc.label">In questo progetto</span>
+        <a href="#part-1" class="toc-item">
+            <span class="toc-num">01</span>
+            <span class="toc-name" data-i18n="kleis.part1.label">Brand Identity</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-2" class="toc-item">
+            <span class="toc-num">02</span>
+            <span class="toc-name" data-i18n="kleis.part2.label">Versa &nbsp;·&nbsp; Product Design</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+    </div>
+
+    <!-- ── PARTE 01 · BRAND IDENTITY ─────────────────────────────── -->
+
+    <div id="part-1" class="project-part reveal">
+        <span class="project-part-num">01</span>
+        <span class="project-part-label" data-i18n="kleis.part1.label">Brand Identity</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="img-full reveal">
+        <div class="img-bg c-cream" style="background-image: url('images/kleis/brand/logo_primary.png');"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="kleis.caption.1">Logotipo, variante principale, Mandarino Atomico e Blu Oxford</p>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-cream" style="background-image: url('images/kleis/brand/logo_mono.png');"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-cream" style="background-image: url('images/kleis/brand/feed_ig.png'); background-size: contain; background-repeat: no-repeat;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="kleis.caption.2">Variante monocolore Blu Oxford e feed Instagram</p>
+
+    <div class="img-full reveal">
+        <div class="img-bg" style="background-image: url('images/kleis/brand/website.jpg');"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="kleis.caption.3">Homepage del sito web</p>
+
+    <div class="img-row img-row-3 reveal">
+        <div class="img-block" data-ratio="3/4">
+            <div class="img-bg c-sand" style="background-image: url('images/kleis/brand/stamp.png');"></div>
+        </div>
+        <div class="img-block" data-ratio="3/4">
+            <div class="img-bg c-stone" style="background-image: url('images/kleis/brand/sketchbook.png');"></div>
+        </div>
+        <div class="img-block" data-ratio="3/4">
+            <div class="img-bg" style="background-image: url('images/kleis/brand/vetrofania.png'); background-color: #1A1A1A;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="kleis.caption.4">Applicazioni del brand: timbro, sketchbook e vetrofania</p>
+
+    <div class="img-full reveal">
+        <div class="img-bg c-warm" style="background-image: url('images/kleis/brand/notebook.png');"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="kleis.caption.5">Brand in contesto, mockup digitale</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="kleis.brand.approach.body">
+            <p>Il punto di partenza è il marchio esistente di Kleis, ridisegnato per rafforzare l'identità dell'azienda senza tradirne la storia. Il nuovo logotipo mantiene la freccia come elemento caratterizzante della K, simbolo di dinamismo e direzione, declinata in una geometria più moderna e bilanciata.</p>
+            <p>La palette si costruisce intorno a due colori dominanti: il Mandarino Atomico, un arancione caldo e materico, e il Blu Oxford, un blu notte profondo che conferisce autorevolezza. Il sistema si estende su tutti i touchpoint: sito web, social media, cancelleria e segnaletica.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 02 · VERSA – PRODUCT DESIGN ─────────────────────── -->
+
+    <div id="part-2" class="project-part reveal">
+        <span class="project-part-num">02</span>
+        <span class="project-part-label" data-i18n="kleis.part2.label">Versa &nbsp;·&nbsp; Product Design</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="reveal">
+        <img src="images/kleis/product/moodboard.png" alt="Moodboard Versa" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="kleis.caption.6">Moodboard ispirativo, principi di Universal Design e modularità</p>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="3/4">
+            <div class="img-bg" style="background-image: url('images/kleis/product/sketch_1.png'); background-color: #F8F6F4; background-size: contain; background-repeat: no-repeat;"></div>
+        </div>
+        <div class="img-block" data-ratio="3/4">
+            <div class="img-bg" style="background-image: url('images/kleis/product/sketch_2.png'); background-color: #F8F6F4; background-size: contain; background-repeat: no-repeat;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="kleis.caption.7">Sketch di ideazione e sviluppo modulare</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="kleis.product.approach.body">
+            <p>Versa nasce da una domanda precisa: e se una maniglia potesse adattarsi a chi la usa, invece di obbligare l'utente ad adattarsi a lei? Il progetto esplora il principio dell'Universal Design applicato all'oggetto più quotidiano di un edificio.</p>
+            <p>Il sistema è composto da moduli intercambiabili: una base in alluminio standard, un modulo a gomito per chi non può abbassare la mano, un modulo push&pull per l'apertura senza presa, e una placca in braille personalizzabile per identificare la stanza. I moduli si combinano liberamente, in materiali e finiture diverse.</p>
+        </div>
+    </div>
+
+    <div class="img-row img-row-3 reveal">
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg img-bg-contain c-render" style="background-image: url('images/kleis/product/handle_straight.png');"></div>
+        </div>
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg img-bg-contain c-render" style="background-image: url('images/kleis/product/handle_esagonale.png');"></div>
+        </div>
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg img-bg-contain c-render" style="background-image: url('images/kleis/product/handle_cristallo.png');"></div>
+        </div>
+    </div>
+    <div class="img-row img-row-3 reveal">
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg img-bg-contain c-render" style="background-image: url('images/kleis/product/handle_policarbonato.png');"></div>
+        </div>
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg img-bg-contain c-render" style="background-image: url('images/kleis/product/handle_drv.png');"></div>
+        </div>
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg img-bg-contain c-render" style="background-image: url('images/kleis/product/handle_svuotato.png');"></div>
+        </div>
+    </div>
+    <div class="img-row img-row-3 reveal">
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg img-bg-contain c-render" style="background-image: url('images/kleis/product/handle_gomito.png');"></div>
+        </div>
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg img-bg-contain c-render" style="background-image: url('images/kleis/product/handle_pushpull.png');"></div>
+        </div>
+        <div class="img-block" data-ratio="1/1">
+            <div class="img-bg img-bg-contain c-render" style="background-image: url('images/kleis/product/handle_black.png');"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="kleis.caption.8">Render dei moduli Versa, varianti di forma e materiale</p>
+
+    <div class="img-full reveal">
+        <div class="img-bg" style="background-image: url('images/kleis/product/handle_context.png');"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="kleis.caption.9">Maniglia Versa in contesto architettonico</p>
+
+    <div class="project-credits reveal">
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="kleis.credit.agency">Agenzia</p>
+            <p class="credit-name">Voxart</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="mag.credit.uni">Università</p>
+            <p class="credit-name">ITS Academy Machina Lonati</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="kleis.credit.relatore">Relatore</p>
+            <p class="credit-name">Michele Scarpellini</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.year">Anno</p>
+            <p class="credit-name">2024</p>
+        </div>
+    </div>
+
+    <a href="baldinini.html" class="next-project reveal">
+        <div>
+            <p class="next-label" data-i18n="project.next.label">Prossimo progetto</p>
+            <p class="next-title" data-i18n="kleis.next.title">Baldinini</p>
+        </div>
+        <span class="next-arrow">→</span>
+    </a>
+
+    <footer>
+        <p>© 2026 Andrea Ghirardi</p>
+        <p data-i18n="footer.tagline">Progettato con cura</p>
+        <p><a href="../work.html" style="color:inherit;text-decoration:none;opacity:.6;" data-i18n="project.all">← Tutti i progetti</a></p>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav-links">
+        <a href="../work.html" data-i18n="nav.work">Lavori</a>
+        <a href="../about.html" data-i18n="nav.about">Chi sono</a>
+        <a href="../contact.html" data-i18n="nav.contact">Contatti</a>
+    </nav>
+</div>
+
+    <script src="../translations.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

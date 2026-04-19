@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrea Ghirardi - Graphic Designer</title>
+    <link rel="stylesheet" href="style.css">
+    <script>(function () { var t = localStorage.getItem('ag-theme'); if (t === 'light') document.documentElement.setAttribute('data-theme', 'light'); })()</script>
+    <style>
+        /* ── Homepage only ─────────────────────────────────────── */
+        body {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 56px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Large background monogram */
+        .hero-mono {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -52%);
+            font-family: var(--serif);
+            font-size: 42vw;
+            font-weight: 700;
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(var(--fg-rgb), 0.04);
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+            letter-spacing: -.04em;
+        }
+
+        .hero-eyebrow {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeSlideUp .7s ease .15s forwards;
+        }
+
+        .hero-name {
+            font-family: var(--serif);
+            font-size: clamp(86px, 14.5vw, 220px);
+            font-weight: 700;
+            line-height: .86;
+            letter-spacing: -.025em;
+        }
+
+        .hero-name .name-line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-name .name-line span {
+            display: block;
+            transform: translateY(105%);
+            opacity: 0;
+        }
+
+        .hero-name .name-line:nth-child(1) span {
+            animation: revealUp 1s cubic-bezier(.16, 1, .3, 1) .3s forwards;
+        }
+
+        .hero-name .name-line:nth-child(2) span {
+            animation: revealUp 1s cubic-bezier(.16, 1, .3, 1) .46s forwards;
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--fg);
+        }
+
+        .hero-ctas {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-top: 52px;
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeSlideUp .8s ease .9s forwards;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--accent);
+            color: var(--bg);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background .25s ease, gap .3s ease;
+        }
+
+        .cta-primary:hover {
+            background: #33D6FF;
+            gap: 18px;
+        }
+
+        .cta-secondary {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .25s ease;
+        }
+
+        .cta-secondary:hover {
+            color: var(--fg);
+        }
+
+        /* Ticker */
+        .hero-ticker {
+            border-top: 1px solid var(--border);
+            padding: 14px 0;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn .8s ease 1.2s forwards;
+        }
+
+        .ticker-track {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker 28s linear infinite;
+        }
+
+        .ticker-text {
+            flex-shrink: 0;
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* Vertical label */
+        .hero-side {
+            position: absolute;
+            right: 56px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            transform-origin: center;
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: 0;
+            animation: fadeIn 1s ease 1.1s forwards;
+        }
+
+        /* Scroll indicator */
+        .hero-scroll-hint {
+            position: absolute;
+            bottom: 80px;
+            left: 56px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.4s forwards;
+        }
+
+        .hero-scroll-hint span {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            writing-mode: vertical-lr;
+        }
+
+        .hero-scroll-hint::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(to bottom, var(--muted), transparent);
+        }
+
+        /* ── Responsive ─────────────────────────────────────────── */
+        @media (max-width: 900px) {
+            #hero            { padding: 0 28px 0; }
+            .hero-side       { display: none; }
+            .hero-scroll-hint { left: 28px; }
+        }
+
+        @media (max-width: 540px) {
+            .hero-ctas        { flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 36px; }
+            .hero-ticker      { display: none; }
+            .hero-scroll-hint { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="nav">
+        <a href="index.html" class="nav-logo">Andrea Ghirardi</a>
+        <ul class="nav-links">
+            <li><a href="work.html" data-i18n="nav.work">Lavori</a></li>
+            <li><a href="about.html" data-i18n="nav.about">Chi sono</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <span class="lang-sep">/</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+    </nav>
+
+    <section id="hero">
+
+        <div class="hero-mono" aria-hidden="true">AG</div>
+
+        <h1 class="hero-name">
+            <span class="name-line"><span>Andrea</span></span>
+            <span class="name-line"><span>Ghirardi</span></span>
+        </h1>
+
+        <div class="hero-ctas">
+            <a href="work.html" class="cta-primary" data-i18n="home.cta.primary">Vedi i lavori &nbsp;→</a>
+            <a href="about.html" class="cta-secondary" data-i18n="home.cta.secondary">Chi sono</a>
+        </div>
+
+        <div class="hero-ticker">
+            <div class="ticker-track">
+                <span class="ticker-text" data-i18n="home.ticker">Brand Identity &nbsp;·&nbsp; Design Editoriale &nbsp;·&nbsp; Tipografia &nbsp;·&nbsp; Packaging &nbsp;·&nbsp; Stampa &nbsp;·&nbsp; Sistemi Visivi &nbsp;·&nbsp; &nbsp;</span>
+                <span class="ticker-text" data-i18n="home.ticker">Brand Identity &nbsp;·&nbsp; Design Editoriale &nbsp;·&nbsp; Tipografia &nbsp;·&nbsp; Packaging &nbsp;·&nbsp; Stampa &nbsp;·&nbsp; Sistemi Visivi &nbsp;·&nbsp; &nbsp;</span>
+                <span class="ticker-text" data-i18n="home.ticker">Brand Identity &nbsp;·&nbsp; Design Editoriale &nbsp;·&nbsp; Tipografia &nbsp;·&nbsp; Packaging &nbsp;·&nbsp; Stampa &nbsp;·&nbsp; Sistemi Visivi &nbsp;·&nbsp; &nbsp;</span>
+                <span class="ticker-text" data-i18n="home.ticker">Brand Identity &nbsp;·&nbsp; Design Editoriale &nbsp;·&nbsp; Tipografia &nbsp;·&nbsp; Packaging &nbsp;·&nbsp; Stampa &nbsp;·&nbsp; Sistemi Visivi &nbsp;·&nbsp; &nbsp;</span>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav-links">
+        <a href="work.html" data-i18n="nav.work">Lavori</a>
+        <a href="about.html" data-i18n="nav.about">Chi sono</a>
+        <a href="contact.html" data-i18n="nav.contact">Contatti</a>
+    </nav>
+</div>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

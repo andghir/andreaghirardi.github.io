@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postcards from the Future – Andrea Ghirardi</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>(function(){var t=localStorage.getItem('ag-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
+    <style>
+        /* ── Hero ───────────────────────────────────────────── */
+        .c-peri   { background-color: #6E70B0; }
+
+        /* ── Section part divider ────────────────────────────── */
+        .project-part {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 72px 56px 0;
+        }
+        .project-part-num {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .project-part-label {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--fg);
+            flex-shrink: 0;
+        }
+        .project-part-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Cover: centred portrait, bg matches site theme ─── */
+        .cover-wrap {
+            display: grid;
+            grid-template-columns: 1fr minmax(0, 380px) 1fr;
+            background: var(--bg);
+            padding: 80px 0;
+        }
+        .cover-wrap .cover-inner {
+            grid-column: 2;
+            aspect-ratio: 8/11;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 120px rgba(0,0,0,.55);
+        }
+        [data-theme="light"] .cover-wrap .cover-inner {
+            box-shadow: 0 24px 80px rgba(0,0,0,.35), 0 8px 24px rgba(0,0,0,.18);
+        }
+        .cover-wrap .img-bg { position: absolute; inset: 0; }
+
+        /* ── 5-col credits ───────────────────────────────────── */
+        .project-credits { grid-template-columns: repeat(4, 1fr); }
+
+        @media (max-width: 900px) {
+            .project-part { padding: 48px 28px 0; }
+            .cover-wrap { display: flex; flex-direction: column; align-items: center; padding: 56px 28px; }
+            .cover-wrap .cover-inner { width: 100%; max-width: 300px; }
+            .project-credits { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body class="project-page">
+
+    <div class="cursor"      id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="nav">
+        <a href="../index.html" class="nav-logo">Andrea Ghirardi</a>
+        <ul class="nav-links">
+            <li><a href="../work.html"    data-i18n="nav.work">Lavori</a></li>
+            <li><a href="../about.html"   data-i18n="nav.about">Chi sono</a></li>
+            <li><a href="../contact.html" data-i18n="nav.contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <span class="lang-sep">/</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+    </nav>
+
+    <div class="project-hero">
+        <div class="project-hero-bg c-peri"></div>
+        <div class="project-hero-gradient"></div>
+        <a href="../work.html" class="project-breadcrumb" data-i18n="project.back">← Tutti i lavori</a>
+        <div class="project-hero-content">
+            <p class="project-hero-num">04 / 06</p>
+            <h1 class="project-hero-title">Postcards from the Future</h1>
+            <p class="project-hero-cat" data-i18n="mag.hero.cat">Design editoriale</p>
+        </div>
+    </div>
+
+    <div class="project-meta">
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="mag.meta.uni.label">Università</p>
+            <p class="meta-value">Libera Università di Bolzano</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="mag.credit.corso">Corso</p>
+            <p class="meta-value">WUP – Visual Communication</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.year">Anno</p>
+            <p class="meta-value">2025</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.category">Categoria</p>
+            <p class="meta-value" data-i18n="mag.meta.cat">Design editoriale</p>
+        </div>
+    </div>
+
+    <div class="project-overview reveal">
+        <p class="overview-label" data-i18n="project.overview.label">Panoramica</p>
+        <p class="overview-text" data-i18n="mag.overview">
+            Magazine tematico progettato durante il WUP Visual Communication alla Libera Università di Bolzano. Intitolato «Postcards from the Future (that never happened)», il magazine si configura come un cimitero di linee temporali abbandonate: un archivio dell'immaginario collettivo sul futuro, organizzato in sei sezioni che spaziano dal retrofuturismo alle ansie algoritmiche, dalle città empatiche all'architettura liquida.
+        </p>
+    </div>
+
+    <div class="project-toc reveal">
+        <span class="toc-heading" data-i18n="project.toc.label">In questo progetto</span>
+        <a href="#part-1" class="toc-item">
+            <span class="toc-num">01</span>
+            <span class="toc-name" data-i18n="mag.part1.label">Il concept</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-2" class="toc-item">
+            <span class="toc-num">02</span>
+            <span class="toc-name" data-i18n="mag.part2.label">Le sezioni</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-3" class="toc-item">
+            <span class="toc-num">03</span>
+            <span class="toc-name" data-i18n="mag.part3.label">Tipografia &amp; Materialità</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+    </div>
+
+    <!-- ── PARTE 01 · IL CONCEPT ──────────────────────────────────────── -->
+
+    <div id="part-1" class="project-part reveal">
+        <span class="project-part-num">01</span>
+        <span class="project-part-label" data-i18n="mag.part1.label">Il concept</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="cover-wrap reveal">
+        <div class="cover-inner">
+            <div class="img-bg" style="background-image: url('images/magazine/cover.jpg'); background-size: cover; background-position: center;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="mag.caption.1">Copertina, rilegatura a punti fatta a mano</p>
+
+    <div class="reveal">
+        <img src="images/magazine/spread_08-09.jpg" alt="Indice del magazine" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="mag.caption.2">Indice del magazine, sei sezioni, sessanta pagine</p>
+
+    <div class="reveal">
+        <img src="images/magazine/spread_06-07.jpg" alt="Editor's Letter" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="mag.caption.3">Editor's Letter, il tono dell'archivio</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="mag.concept.body">
+            <p>Il punto di partenza è una domanda semplice: perché il futuro sembra spesso un posto che abbiamo già visitato? Il magazine parte da questa tensione per costruire un archivio dell'immaginario collettivo, non un manuale utopico del domani, ma una raccolta di ciò che è stato immaginato e non è mai accaduto.</p>
+            <p>La struttura editoriale rifiuta la linearità. Il titolo stesso è un archivio: sei sezioni, sessanta pagine, una molteplicità di voci, formati e registri visivi che coesistono senza risolversi in un'unica tesi. Il magazine non risponde alla domanda sul futuro: la amplifica.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 02 · LE SEZIONI ──────────────────────────────────────── -->
+
+    <div id="part-2" class="project-part reveal">
+        <span class="project-part-num">02</span>
+        <span class="project-part-label" data-i18n="mag.part2.label">Le sezioni</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="reveal">
+        <img src="images/magazine/spread_12-13.jpg" alt="Retrofuturism" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="mag.caption.4">Retrofuturism, La promessa rotta dell'ieri</p>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/magazine/spread_25.jpg'); background-size: cover; background-position: center; background-color: #0D0D0D;"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/magazine/spread_27.jpg'); background-size: cover; background-position: center; background-color: #1A0505;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="mag.caption.5">Afraid Tomorrows, Distopie domestiche e silenzi algoritmici</p>
+
+    <div class="reveal">
+        <img src="images/magazine/spread_18-19.jpg" alt="Artifacts & Algorithms" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="mag.caption.6">Artifacts &amp; Algorithms, Un catalogo di ansie sintetiche</p>
+
+    <div class="reveal">
+        <img src="images/magazine/spread_33.jpg" alt="Imagined Tomorrows" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="mag.caption.7">Imagined Tomorrows, Quando la città impara ad ascoltare</p>
+
+    <div class="reveal">
+        <img src="images/magazine/spread_39.jpg" alt="Impossible Futures" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="mag.caption.8">Impossible Futures, Dove la logica finisce e la gravità cambia direzione</p>
+
+    <div class="reveal">
+        <img src="images/magazine/spread_48-49.jpg" alt="Emotional Maintenance Guide" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="mag.caption.9">Emotional Maintenance Guide, Procedure di reset d'emergenza</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="mag.sections.body">
+            <p>Il concept è stato volutamente spinto fuori dai canoni grafici tradizionali. Stiamo raccontando il futuro, molteplici possibilità del futuro, qualcosa di incerto, che non sappiamo ancora che forma estetica potrà avere. Non ha senso imporgli una griglia unica, un solo carattere, una sola palette: sarebbe una bugia visiva.</p>
+            <p>Per questo ogni sezione ha le sue typeface, una griglia diversa e una palette autonoma: il glitch grafico e il rosso aggressivo di Retrofuturism, l'eleganza da catalogo scientifico di Artifacts & Algorithms, il nero opprimente delle distopie domestiche in Afraid Tomorrows, la luce organica di Imagined Tomorrows, le geometrie impossibili di Impossible Futures, le tavole IKEA ricontestualizzate dell'Emotional Maintenance Guide. La discontinuità non è un difetto di sistema: è il sistema.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 03 · TIPOGRAFIA & MATERIALITÀ ────────────────────────── -->
+
+    <div id="part-3" class="project-part reveal">
+        <span class="project-part-num">03</span>
+        <span class="project-part-label" data-i18n="mag.part3.label">Tipografia &amp; Materialità</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="mag.typography.body">
+            <p>Il sistema tipografico si costruisce attorno a quattro voci in dialogo: Space Grotesk e Bodoni Moda per i titoli, grotesk condensed e serif classico, tensione tra contemporaneità e storia, Crimson Pro per i testi narrativi, Courier per i dati d'archivio. La scelta di Courier non è nostalgia: è un codice visivo che segnala «dato grezzo», informazione non elaborata, documento.</p>
+            <p>La stampa su carta RC kraft grigia (280 gsm per la copertina, 100 gsm per le pagine interne) restituisce un'opacità materica che i magazine patinati non possono offrire. La rilegatura a punti fatta a mano rafforza il senso di oggetto da conservare: un archivio fisico in un'epoca di file temporanei.</p>
+        </div>
+    </div>
+
+    <div class="project-credits reveal">
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="mag.credit.uni">Università</p>
+            <p class="credit-name">Libera Università di Bolzano</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="mag.credit.corso">Corso</p>
+            <p class="credit-name">WUP – Visual Communication</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="wd.credit.facilitatori">Facilitatori</p>
+            <p class="credit-name">Antonino Benincasa<br>Rocco Lorenzo Modugno<br>Andrea Maffei</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.year">Anno</p>
+            <p class="credit-name">2025</p>
+        </div>
+    </div>
+
+    <a href="kleis.html" class="next-project reveal">
+        <div>
+            <p class="next-label" data-i18n="project.next.label">Prossimo progetto</p>
+            <p class="next-title" data-i18n="mag.next.title">Kleis</p>
+        </div>
+        <span class="next-arrow">→</span>
+    </a>
+
+    <footer>
+        <p>© 2026 Andrea Ghirardi</p>
+        <p data-i18n="footer.tagline">Progettato con cura</p>
+        <p><a href="../work.html" style="color:inherit;text-decoration:none;opacity:.6;" data-i18n="project.all">← Tutti i progetti</a></p>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav-links">
+        <a href="../work.html" data-i18n="nav.work">Lavori</a>
+        <a href="../about.html" data-i18n="nav.about">Chi sono</a>
+        <a href="../contact.html" data-i18n="nav.contact">Contatti</a>
+    </nav>
+</div>
+
+    <script src="../translations.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

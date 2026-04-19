@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baldinini - Andrea Ghirardi</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>(function(){var t=localStorage.getItem('ag-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
+    <style>
+        /* ── Colors ─────────────────────────────────────────── */
+        .c-bald-dark  { background-color: #140A07; }
+        .c-bald-cream { background-color: #F2EBE0; }
+        .c-bald-red   { background-color: #B5182A; }
+        .c-bald-light { background-color: #FAF6F1; }
+
+        /* ── Section part divider ────────────────────────────── */
+        .project-part {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 72px 56px 0;
+        }
+        .project-part-num {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .project-part-label {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--fg);
+            flex-shrink: 0;
+        }
+        .project-part-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Logo display ────────────────────────────────────── */
+        .logo-display {
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 56px;
+        }
+        .logo-display img {
+            width: min(320px, 45%);
+            height: auto;
+            display: block;
+        }
+        [data-theme="light"] .logo-display { background: #F2EBE0; }
+        [data-theme="light"] .logo-dark  { display: none; }
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+
+        /* ── Palette strip ───────────────────────────────────── */
+        .palette-strip {
+            display: flex;
+            height: 72px;
+            gap: 3px;
+        }
+        .palette-strip .swatch { flex: 1; }
+
+        /* ── Video block ─────────────────────────────────────── */
+        .project-video {
+            position: relative;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .project-video video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ── Accessori grid ──────────────────────────────────── */
+        .accessori-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+        }
+        .accessori-grid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        /* ── LE grid (2+2+1) ─────────────────────────────────── */
+        .le-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+        }
+        .le-grid img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .le-grid .le-full { grid-column: 1 / 3; }
+
+        /* ── ACBC section ────────────────────────────────────── */
+        .acbc-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+        }
+        .acbc-row img,
+        .acbc-row video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ── Meta & credits ──────────────────────────────────── */
+        .project-meta    { grid-template-columns: repeat(5, 1fr); }
+        .project-credits { grid-template-columns: repeat(4, 1fr); }
+
+        @media (max-width: 900px) {
+            .project-part    { padding: 48px 28px 0; }
+            .logo-display    { padding: 56px 28px; }
+            .logo-display img { width: min(240px, 70%); }
+            .accessori-grid  { grid-template-columns: 1fr 1fr; }
+            .le-grid         { grid-template-columns: 1fr; }
+            .le-grid .le-full { grid-column: 1; }
+            .acbc-row        { grid-template-columns: 1fr; }
+            .project-meta    { grid-template-columns: 1fr 1fr 1fr; }
+            .project-credits { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body class="project-page">
+
+    <div class="cursor"      id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="nav">
+        <a href="../index.html" class="nav-logo">Andrea Ghirardi</a>
+        <ul class="nav-links">
+            <li><a href="../work.html"    data-i18n="nav.work">Lavori</a></li>
+            <li><a href="../about.html"   data-i18n="nav.about">Chi sono</a></li>
+            <li><a href="../contact.html" data-i18n="nav.contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <span class="lang-sep">/</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+    </nav>
+
+    <div class="project-hero">
+        <div class="project-hero-bg c-bald-dark"></div>
+        <div class="project-hero-gradient"></div>
+        <a href="../work.html" class="project-breadcrumb" data-i18n="project.back">← Tutti i lavori</a>
+        <div class="project-hero-content">
+            <p class="project-hero-num">06 / 06</p>
+            <h1 class="project-hero-title">Baldinini</h1>
+            <p class="project-hero-cat" data-i18n="bald.hero.cat">Packaging Design</p>
+        </div>
+    </div>
+
+    <div class="project-meta">
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="mag.meta.uni.label">Università</p>
+            <p class="meta-value">ITS Academy Machina Lonati</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.client">Cliente</p>
+            <p class="meta-value">Baldinini</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="bald.meta.ruolo.label">Ruolo</p>
+            <p class="meta-value" data-i18n="bald.meta.ruolo.value">Direzione Creativa</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.category">Categoria</p>
+            <p class="meta-value" data-i18n="bald.meta.cat">Packaging Design</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.year">Anno</p>
+            <p class="meta-value">2024</p>
+        </div>
+    </div>
+
+    <div class="project-overview reveal">
+        <p class="overview-label" data-i18n="project.overview.label">Panoramica</p>
+        <p class="overview-text" data-i18n="bald.overview">
+            Dal 1910 Baldinini è una delle maggiori aziende italiane nel campo del fashion. Celebre per la produzione di calzature, negli ultimi anni si è aperta anche a borse, accessori e pelletteria. Il professore Roberto Della Rupe ha invitato la Head of Marketing di Baldinini a presentarci il brief e la nuova brand identity del marchio: progettare un packaging sostenibile con relativa unboxing experience per l'e-commerce. Il nostro gruppo ha vinto il contest.
+        </p>
+    </div>
+
+    <div class="project-toc reveal">
+        <span class="toc-heading" data-i18n="project.toc.label">In questo progetto</span>
+        <a href="#part-1" class="toc-item">
+            <span class="toc-num">01</span>
+            <span class="toc-name" data-i18n="bald.part1.label">Brand Identity</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-2" class="toc-item">
+            <span class="toc-num">02</span>
+            <span class="toc-name" data-i18n="bald.part2.label">Sistema Packaging</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-3" class="toc-item">
+            <span class="toc-num">03</span>
+            <span class="toc-name" data-i18n="bald.part3.label">Heritage &amp; Materiali</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-4" class="toc-item">
+            <span class="toc-num">04</span>
+            <span class="toc-name" data-i18n="bald.part4.label">Dettagli &amp; Experience</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-5" class="toc-item">
+            <span class="toc-num">05</span>
+            <span class="toc-name" data-i18n="bald.part5.label">ACBC × Baldinini</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-6" class="toc-item">
+            <span class="toc-num">06</span>
+            <span class="toc-name" data-i18n="bald.part6.label">Limited Edition</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+    </div>
+
+    <!-- ── PARTE 01 · BRAND IDENTITY ────────────────────────────────── -->
+
+    <div id="part-1" class="project-part reveal">
+        <span class="project-part-num">01</span>
+        <span class="project-part-label" data-i18n="bald.part1.label">Brand Identity</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="logo-display reveal">
+        <img class="logo-dark"  src="images/baldinini/logo_white.svg" alt="Logo Baldinini">
+        <img class="logo-light" src="images/baldinini/logo_dark.svg"  alt="Logo Baldinini">
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.logo">Logotipo Baldinini</p>
+
+    <div class="palette-strip reveal">
+        <div class="swatch" style="background:#B5182A;"></div>
+        <div class="swatch" style="background:#C9A96E;"></div>
+        <div class="swatch" style="background:#F2EBE0;"></div>
+        <div class="swatch" style="background:#1A1009;"></div>
+        <div class="swatch" style="background:#FFFFFF;"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.palette">Palette colori</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="bald.identity.body">
+            <p>La nuova brand identity di Baldinini è stata presentata direttamente dalla Head of Marketing del brand: un sistema che aggiorna il linguaggio visivo dell'azienda senza rinunciare al suo carattere storico. Il nostro lavoro non è stato ridisegnare l'identità, ma declinarla e applicarla con coerenza e precisione all'intero sistema packaging.</p>
+            <p>Ogni scelta materica, tipografica e cromatica è stata valutata in relazione alla filiera produttiva, alle certificazioni delle carte e alla sostenibilità dei fornitori — elementi che facevano parte integrante dei criteri di valutazione del contest.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 02 · SISTEMA PACKAGING ─────────────────────────────── -->
+
+    <div id="part-2" class="project-part reveal">
+        <span class="project-part-num">02</span>
+        <span class="project-part-label" data-i18n="bald.part2.label">Sistema Packaging</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="img-full reveal">
+        <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/set_fotografico.jpg');"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.set">Set fotografico, linea standard</p>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/scatola.jpg');"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-cream" style="background-image: url('images/baldinini/scatola_bianca.jpg');"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.scatola">Scatola scarpe e-commerce, versione rossa e bianca</p>
+
+    <div class="project-video reveal">
+        <video autoplay muted loop playsinline preload="none">
+            <source src="images/baldinini/video_ecom.mp4" type="video/mp4">
+        </video>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.video.ecom">Unboxing experience e-commerce, animazione</p>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/shopper_1.jpg');"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/shopper_2.jpg');"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.shopper">Shopper, due varianti grafiche</p>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/dustbag_1.jpg');"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/dustbag_2.jpg');"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.dustbag">Dust bag, due varianti</p>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/nastro_bianco.jpg');"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-red" style="background-image: url('images/baldinini/nastro_rosso.jpg');"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.nastro">Nastro personalizzato, versione bianca e rossa</p>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-cream" style="background-image: url('images/baldinini/carta_regalo.jpg');"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-cream" style="background-image: url('images/baldinini/carta_velina.jpg');"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.carta">Carta regalo e carta velina con foto d'archivio</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="bald.packaging.body">
+            <p>Il concept guida il sistema packaging: esterna contemporanea, interna custode della memoria. La parte esterna di ogni elemento riflette la nuova brand identity di Baldinini, pulita e attuale. La parte interna — carta velina, fondini delle scatole — diventa invece un archivio visivo: fotografie storiche dell'artigianalità Baldinini, stampate su carta certificata, che raccontano oltre 100 anni di sapere artigiano nella pelletteria di San Mauro Pascoli.</p>
+            <p>Il corso di packaging ci ha introdotto alla cartotecnica e alla conoscenza approfondita della carta in ambito di lusso: grammature, finiture, certificazioni FSC e provenienza dei fornitori erano criteri di valutazione dell'esame finale. Ogni carta è stata selezionata in coerenza con questi parametri.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 03 · HERITAGE & MATERIALI ──────────────────────────── -->
+
+    <div id="part-3" class="project-part reveal">
+        <span class="project-part-num">03</span>
+        <span class="project-part-label" data-i18n="bald.part3.label">Heritage &amp; Materiali</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="3/4">
+            <div class="img-bg c-bald-cream" style="background-image: url('images/baldinini/scatola_interna.jpg');"></div>
+        </div>
+        <div class="img-block" data-ratio="3/4">
+            <div class="img-bg c-bald-cream" style="background-image: url('images/baldinini/ecom_aperta.jpg');"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.interna">Interno scatola, foto d'archivio Baldinini stampate sulla carta di fondo</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="bald.heritage.body">
+            <p>Il DNA artigiano di Baldinini si intreccia con collezioni contemporanee in continua evoluzione. Per tradurre questo dualismo in materia, abbiamo scelto di stampare fotografie storiche dell'archivio Baldinini sulla carta velina interna e sui fondini delle scatole: immagini di mani che lavorano il cuoio, di laboratori, di calzature in lavorazione. Chi apre la scatola incontra prima il presente, poi la radice.</p>
+            <p>La scelta delle carte è stata guidata da criteri di sostenibilità: tutti i fornitori sono stati selezionati tra quelli già certificati e virtuosi, in linea con il brief originale del contest.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 04 · DETTAGLI & EXPERIENCE ─────────────────────────── -->
+
+    <div id="part-4" class="project-part reveal">
+        <span class="project-part-num">04</span>
+        <span class="project-part-label" data-i18n="bald.part4.label">Dettagli &amp; Experience</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-cream" style="background-image: url('images/baldinini/cartolina.jpg');"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/timbro.png'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.cartolina">Cartolina da piantare e timbro ceralacca</p>
+
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-light" style="background-image: url('images/baldinini/porta_cartolina.jpg');"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-light" style="background-image: url('images/baldinini/porta_scontrino.jpg');"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.gadget">Porta cartolina riutilizzabile e porta scontrino</p>
+
+    <div class="accessori-grid reveal">
+        <img src="images/baldinini/box_portafogli.jpg" alt="Box portafogli" style="background:#F2EBE0;">
+        <img src="images/baldinini/custodia_occhiali.jpg" alt="Custodia occhiali" style="background:#F2EBE0;">
+        <img src="images/baldinini/scatola_profumo.jpg" alt="Scatola profumo" style="background:#F2EBE0;">
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.accessori">Box portafogli, custodia occhiali, scatola profumo</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="bald.experience.body">
+            <p>L'unboxing experience è stata progettata come un percorso: ogni elemento è stato pensato per aggiungere valore senza aggiungere spreco. La cartolina inclusa nella scatola è realizzata in carta con semi da piantare — dopo la lettura, può essere interrata e germogliare. Il timbro ceralacca sigilla i pacchi con un'impronta sensoriale che ricorda l'artigianalità.</p>
+            <p>Il porta cartolina — incluso come gadget — è progettato per essere riutilizzato: le sue dimensioni accolgono una foto o una polaroid, trasformando un elemento di packaging in un oggetto da tenere. La stessa logica vale per il porta scontrino. Non si butta niente: si reinterpreta.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 05 · ACBC × BALDININI ──────────────────────────────── -->
+
+    <div id="part-5" class="project-part reveal">
+        <span class="project-part-num">05</span>
+        <span class="project-part-label" data-i18n="bald.part5.label">ACBC × Baldinini</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="acbc-row reveal">
+        <img src="images/baldinini/acbc_scatola.jpg" alt="ACBC × Baldinini scatola">
+        <img src="images/baldinini/acbc_gradient.jpg" alt="ACBC × Baldinini gradiente">
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.acbc">ACBC × Baldinini, scatola scarpe per la collaborazione</p>
+
+    <div class="project-video reveal">
+        <video autoplay muted loop playsinline preload="none">
+            <source src="images/baldinini/video_acbc.mp4" type="video/mp4">
+        </video>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.video.acbc">ACBC × Baldinini, animazione della scatola</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="bald.acbc.body">
+            <p>La collaborazione tra Baldinini e ACBC nasce dalla nuova brand identity e da un cambio di valori all'interno dell'azienda, tra cui l'attenzione alla sostenibilità. Come scritto nel brief: «Sostenibilità equivale a una scelta di vita etica, responsabile e coerente dove pensiero e azione diventano una cosa sola, abbracciando onestamente e consapevolmente un movimento ormai inarrestabile a cui vogliamo dare il nostro contributo attivo.»</p>
+            <p>ACBC è un partner tecnologico che produce materiali e componenti per calzature con un approccio modulare e a basso impatto. La scatola dedicata alla collezione ACBC × Baldinini adotta un gradiente che fonde le identità visive dei due brand, segnalando la natura speciale della collaborazione e il suo posizionamento sostenibile all'interno della gamma.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 06 · LIMITED EDITION ────────────────────────────────── -->
+
+    <div id="part-6" class="project-part reveal">
+        <span class="project-part-num">06</span>
+        <span class="project-part-label" data-i18n="bald.part6.label">Limited Edition</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="img-full reveal">
+        <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/set_natale.jpg');"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.le.set">Set fotografico, Limited Edition natalizia</p>
+
+    <div class="le-grid reveal">
+        <div><img src="images/baldinini/scatola_le.jpg" alt="Scatola scarpe LE" style="background:#140A07;"></div>
+        <div><img src="images/baldinini/scatola_le_interna.jpg" alt="Interno scatola LE" style="background:#F2EBE0;"></div>
+        <div><img src="images/baldinini/shopper_le.jpg" alt="Shopper LE" style="background:#140A07;"></div>
+        <div><img src="images/baldinini/dustbag_le.jpg" alt="Dust bag LE" style="background:#140A07;"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.le.pack">Scatola scarpe, interno, shopper e dust bag — Limited Edition</p>
+
+    <div class="img-row img-row-3 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/nastro_natale.jpg');"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/cartolina_le.jpg');"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg c-bald-dark" style="background-image: url('images/baldinini/pallina_natale.jpg');"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.le.details">Nastro, cartolina e pallina natalizia — Limited Edition</p>
+
+    <div class="le-grid reveal">
+        <div><img src="images/baldinini/box_portafogli_le.jpg" alt="Box portafogli LE" style="background:#F2EBE0;"></div>
+        <div><img src="images/baldinini/custodia_occhiali_le.jpg" alt="Custodia occhiali LE" style="background:#F2EBE0;"></div>
+        <div><img src="images/baldinini/cover_iphone_le.jpg" alt="Cover iPhone LE" style="background:#F2EBE0;"></div>
+        <div><img src="images/baldinini/scatola_profumo_le.jpg" alt="Scatola profumo LE" style="background:#F2EBE0;"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.le.accessori">Box portafogli, custodia occhiali, cover iPhone e scatola profumo — Limited Edition</p>
+
+    <div class="project-video reveal">
+        <video autoplay muted loop playsinline preload="none">
+            <source src="images/baldinini/video_ecom_le.mp4" type="video/mp4">
+        </video>
+    </div>
+    <p class="img-caption reveal" data-i18n="bald.caption.video.le">Unboxing experience Limited Edition, animazione</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="bald.le.body">
+            <p>La Limited Edition natalizia declina l'intera linea packaging in una versione speciale che mantiene la coerenza con il sistema standard, amplificandone il carattere. Il rosso Baldinini diventa dominante: dalla scatola scarpe allo shopper, dal dust bag al nastro, fino alla pallina di Natale — ogni elemento è progettato per funzionare sia come packaging che come oggetto da regalo.</p>
+            <p>La cartolina da piantare nella versione LE porta un messaggio stagionale, ma conserva la stessa funzione sostenibile dell'edizione standard: un gesto di cura che parte da un packaging.</p>
+        </div>
+    </div>
+
+    <div class="project-credits reveal">
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="mag.meta.uni.label">Università</p>
+            <p class="credit-name">ITS Academy Machina Lonati</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="bald.credit.gruppo">Gruppo</p>
+            <p class="credit-name">Andrea Ghirardi<br>Michele Sangiorgi<br>Sofia Delbono<br>Valentina Spezia<br>Mattia Arpini<br>Giordano Baronchelli</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="bald.credit.docente">Docente</p>
+            <p class="credit-name">Roberto Della Rupe</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.year">Anno</p>
+            <p class="credit-name">2024</p>
+        </div>
+    </div>
+
+    <a href="ercos.html" class="next-project reveal">
+        <div>
+            <p class="next-label" data-i18n="project.next.label">Prossimo progetto</p>
+            <p class="next-title" data-i18n="bald.next.title">Ercos</p>
+        </div>
+        <span class="next-arrow">→</span>
+    </a>
+
+    <footer>
+        <p>© 2026 Andrea Ghirardi</p>
+        <p data-i18n="footer.tagline">Progettato con cura</p>
+        <p><a href="../work.html" style="color:inherit;text-decoration:none;opacity:.6;" data-i18n="project.all">← Tutti i progetti</a></p>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav-links">
+        <a href="../work.html" data-i18n="nav.work">Lavori</a>
+        <a href="../about.html" data-i18n="nav.about">Chi sono</a>
+        <a href="../contact.html" data-i18n="nav.contact">Contatti</a>
+    </nav>
+</div>
+
+    <script src="../translations.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

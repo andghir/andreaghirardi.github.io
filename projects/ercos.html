@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ercos – Andrea Ghirardi</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>(function(){var t=localStorage.getItem('ag-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
+    <style>
+        /* ── Ercos: hero background ───────────────────────────── */
+        .c-ercos-dark { background-color: #130E08; }
+
+        /* ── Section part divider ────────────────────────────── */
+        .project-part {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 72px 56px 0;
+        }
+        .project-part-num {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .project-part-label {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--fg);
+            flex-shrink: 0;
+        }
+        .project-part-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Cover block: centred portrait ───────────────────── */
+        .cover-wrap {
+            display: grid;
+            grid-template-columns: 1fr minmax(0,520px) 1fr;
+            background: var(--bg);
+            padding: 72px 0;
+        }
+        .cover-wrap .cover-inner {
+            grid-column: 2;
+            aspect-ratio: 2/3;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 120px rgba(0,0,0,.55);
+        }
+        .cover-wrap .img-bg { position: absolute; inset: 0; }
+
+        /* ── Spread: full-width landscape ────────────────────── */
+        .img-full-spread {
+            width: 100%;
+            aspect-ratio: 21/9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ── 2-up portrait row ───────────────────────────────── */
+        .img-row-portrait {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+        }
+        .img-block-portrait {
+            aspect-ratio: 2/3;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ── 5-column credits override ───────────────────────── */
+        .project-credits { grid-template-columns: repeat(5, 1fr); }
+
+        [data-theme="light"] .cover-wrap { background: var(--bg); }
+        [data-theme="light"] .cover-wrap .cover-inner { box-shadow: 0 24px 80px rgba(0,0,0,.35), 0 8px 24px rgba(0,0,0,.18); }
+
+        @media (max-width: 900px) {
+            .project-part { padding: 48px 28px 0; }
+            .cover-wrap { display: flex; flex-direction: column; align-items: center; padding: 48px 28px; }
+            .cover-wrap .cover-inner { width: 100%; max-width: 360px; }
+            .img-full-spread { aspect-ratio: 4/3; }
+            .img-row-portrait { grid-template-columns: 1fr; }
+            .project-credits { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body class="project-page">
+
+    <div class="cursor"      id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="nav">
+        <a href="../index.html" class="nav-logo">Andrea Ghirardi</a>
+        <ul class="nav-links">
+            <li><a href="../work.html"    data-i18n="nav.work">Lavori</a></li>
+            <li><a href="../about.html"   data-i18n="nav.about">Chi sono</a></li>
+            <li><a href="../contact.html" data-i18n="nav.contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <span class="lang-sep">/</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+    </nav>
+
+    <div class="project-hero">
+        <div class="project-hero-bg c-ercos-dark"></div>
+        <div class="project-hero-gradient"></div>
+        <a href="../work.html" class="project-breadcrumb" data-i18n="project.back">← Tutti i lavori</a>
+        <div class="project-hero-content">
+            <p class="project-hero-num">01 / 06</p>
+            <h1 class="project-hero-title">Ercos</h1>
+            <p class="project-hero-cat" data-i18n="ercos.hero.cat">Design editoriale</p>
+        </div>
+    </div>
+
+    <div class="project-meta">
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.client">Cliente</p>
+            <p class="meta-value">Ercos SpA</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.year">Anno</p>
+            <p class="meta-value">2025</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.category">Categoria</p>
+            <p class="meta-value" data-i18n="ercos.meta.cat">Design editoriale</p>
+        </div>
+    </div>
+
+    <div class="project-overview reveal">
+        <p class="overview-label" data-i18n="project.overview.label">Panoramica</p>
+        <p class="overview-text" data-i18n="ercos.overview">
+            Progettazione del listino prezzi Giugno 2025 per Ercos SpA, azienda italiana con oltre 50 anni di esperienza nel design e produzione di soluzioni per il bagno e il riscaldamento. Un documento di oltre 400 pagine bilingue, strutturato come una vera e propria pubblicazione editoriale: dalla copertina in carta Kraft con pattern grafico alle schede prodotto con infografiche, tavole tecniche e tabelle prezzi.
+        </p>
+    </div>
+
+    <div class="project-toc reveal">
+        <span class="toc-heading" data-i18n="project.toc.label">In questo progetto</span>
+        <a href="#part-1" class="toc-item">
+            <span class="toc-num">01</span>
+            <span class="toc-name" data-i18n="ercos.part1.label">Copertina &amp; Impianto editoriale</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-2" class="toc-item">
+            <span class="toc-num">02</span>
+            <span class="toc-name" data-i18n="ercos.part2.label">Fotografia</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-3" class="toc-item">
+            <span class="toc-num">03</span>
+            <span class="toc-name" data-i18n="ercos.part3.label">Schede prodotto</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+    </div>
+
+    <!-- ── PARTE 01 · COPERTINA & IMPIANTO EDITORIALE ────────────────── -->
+
+    <div id="part-1" class="project-part reveal">
+        <span class="project-part-num">01</span>
+        <span class="project-part-label" data-i18n="ercos.part1.label">Copertina &amp; Impianto editoriale</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <!-- Cover centred portrait -->
+    <div class="cover-wrap reveal">
+        <div class="cover-inner">
+            <div class="img-bg" style="background-image: url('images/ercos/cover.jpg'); background-size: cover; background-position: center top;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="ercos.caption.1">Copertina, Listino prezzi Giugno 2025</p>
+
+    <!-- Index spread full-bleed -->
+    <div class="reveal">
+        <img src="images/ercos/index_spread.jpg" alt="Sommario bilingue" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="ercos.caption.2">Sommario bilingue, struttura delle tre macrocategorie</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="ercos.editorial.approach.body">
+            <p>Il progetto parte dall'idea di trasformare un documento tecnico-commerciale in una pubblicazione con una propria identità visiva. La copertina in carta Kraft con un pattern a punti in ciano stabilisce subito il registro: artigianale, materico, contemporaneo.</p>
+            <p>L'impianto tipografico bilancia due voci parallele su ogni pagina: italiano in nero, inglese in ciano. Questa struttura si mantiene coerente attraverso tutto il documento, dalle aperture di sezione con grandi fotografie alle schede prodotto più tecniche, garantendo leggibilità a qualunque livello di lettura.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 02 · FOTOGRAFIA ─────────────────────────────────────── -->
+
+    <div id="part-2" class="project-part reveal">
+        <span class="project-part-num">02</span>
+        <span class="project-part-label" data-i18n="ercos.part2.label">Fotografia</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <!-- Editorial intro spreads (the pink pages with integrated photos) -->
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/ercos/intro_a.jpg'); background-size: cover; background-position: center; background-color: #F0E8E4;"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/ercos/intro_b.jpg'); background-size: cover; background-position: center; background-color: #F0E8E4;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="ercos.caption.3">Presentazione aziendale, set fotografico ad hoc. Fotografia: Studio Odeon / Styling: Sissi Valassina</p>
+
+    <!-- Factory wide shot -->
+    <div class="img-full reveal">
+        <div class="img-bg" style="background-image: url('images/ercos/photo_50.jpg'); background-size: cover; background-position: center; background-color: #E0DDD8;"></div>
+    </div>
+
+    <!-- Three portrait factory photos -->
+    <div class="img-row img-row-3 reveal">
+        <div class="img-block" data-ratio="3/4">
+            <div class="img-bg" style="background-image: url('images/ercos/photo_530.jpg'); background-size: cover; background-position: center top; background-color: #2A2A28;"></div>
+        </div>
+        <div class="img-block" data-ratio="3/4">
+            <div class="img-bg" style="background-image: url('images/ercos/photo_103.jpg'); background-size: cover; background-position: center; background-color: #D0D0CC;"></div>
+        </div>
+        <div class="img-block" data-ratio="3/4">
+            <div class="img-bg" style="background-image: url('images/ercos/photo_24.jpg'); background-size: cover; background-position: center; background-color: #C8C8C4;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="ercos.caption.4">Ritratti di fabbrica e processi produttivi, selezione per la post-produzione</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.process.label">Processo</p>
+        <div class="project-text-body" data-i18n="ercos.photo.approach.body">
+            <p>Le fotografie provengono da un set fotografico allestito ad hoc per il listino, con la direzione creativa di Marco Strina, scatti di Studio Odeon e styling di Sissi Valassina. Ho partecipato alla selezione delle immagini per la post-produzione e ho scelto quali inserire nel documento finale, bilanciando i ritratti delle persone con le fotografie di processo e prodotto.</p>
+            <p>L'obiettivo era mostrare l'azienda dall'interno: non solo i prodotti, ma le persone e i macchinari che li producono. Le pagine introduttive su fondo rosato integrano testo aziendale e fotografie in un formato editoriale che si distingue nettamente dalla comunicazione standard del settore.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 03 · SCHEDE PRODOTTO ────────────────────────────────── -->
+
+    <div id="part-3" class="project-part reveal">
+        <span class="project-part-num">03</span>
+        <span class="project-part-label" data-i18n="ercos.part3.label">Schede prodotto</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <!-- Section openers side by side -->
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/ercos/doccia_opener.jpg'); background-size: cover; background-position: center; background-color: #E8E8E6;"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/ercos/sanitari_opener.jpg'); background-size: cover; background-position: center; background-color: #F0EEE8;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="ercos.caption.5">Aperture di sezione: Piatti doccia e Sanitari</p>
+
+    <!-- Technical specs spread – most info-dense page -->
+    <div class="reveal">
+        <img src="images/ercos/rocq_specs.jpg" alt="RocQ caratteristiche tecniche" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="ercos.caption.6">RocQ – Caratteristiche tecniche: palette colori, infografiche prodotto, certificazioni</p>
+
+    <!-- RocQ product + table -->
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/ercos/rocq_product.jpg'); background-size: cover; background-position: center; background-color: #F5F5F3;"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/ercos/rocq_table.jpg'); background-size: cover; background-position: center; background-color: #F5F5F3;"></div>
+        </div>
+    </div>
+
+    <!-- Sanitari overview (three product lines) -->
+    <div class="reveal">
+        <img src="images/ercos/sanitari_overview.jpg" alt="Sanitari overview" style="width:100%;height:auto;display:block;">
+    </div>
+
+    <!-- Wave + Lavabi -->
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/ercos/wave_spread.jpg'); background-size: cover; background-position: center; background-color: #F5F5F3;"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/ercos/lavabi_overview.jpg'); background-size: cover; background-position: center; background-color: #F5F5F3;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="ercos.caption.7">Schede prodotto: tabelle prezzi, disegni tecnici, sezioni Sanitari e Lavabi</p>
+
+    <!-- Miscelatori overview matrix -->
+    <div class="reveal">
+        <img src="images/ercos/mixer_overview.jpg" alt="Miscelatori tavola comparativa" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="ercos.caption.8">Miscelatori – Tavola comparativa delle linee per categoria di utilizzo</p>
+
+    <!-- Riscaldamento: opener + Comby product -->
+    <div class="img-row img-row-2 reveal">
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/ercos/riscaldamento_opener.jpg'); background-size: cover; background-position: center; background-color: #1A1410;"></div>
+        </div>
+        <div class="img-block" data-ratio="4/3">
+            <div class="img-bg" style="background-image: url('images/ercos/comby_product.jpg'); background-size: cover; background-position: center; background-color: #F2F0EC;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="ercos.caption.9">Riscaldamento – Apertura di sezione e scheda Comby Radiatori multicolonna</p>
+
+    <!-- Scaldasalviette matrix -->
+    <div class="reveal">
+        <img src="images/ercos/scaldasalviette_matrix.jpg" alt="Scaldasalviette matrice di selezione" style="width:100%;height:auto;display:block;">
+    </div>
+    <p class="img-caption reveal" data-i18n="ercos.caption.10">Scaldasalviette idraulici – Matrice di selezione per altezza, larghezza e modello</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="ercos.product.approach.body">
+            <p>Ogni scheda prodotto segue una struttura fissa ma visivamente calibrata: fotografia del prodotto a sinistra, disegno tecnico quotato, tabella delle varianti di finitura e griglia prezzi a destra. Le icone infografiche e i disegni tecnici sono stati realizzati interamente da me: le icone sintetizzano le caratteristiche principali di ogni prodotto, resistenza termica, antibatterico, antiscivolo, in un linguaggio grafico immediato e coerente.</p>
+            <p>Il sistema funziona su oltre 400 pagine mantenendo coerenza tipografica e percettiva. Per gestire le operazioni più macchinose e ripetitive, come l'inserimento e l'aggiornamento dei prezzi su centinaia di schede, ho applicato competenze di coding e analisi dei dati: script e automazioni che hanno ridotto drasticamente i tempi tecnici, lasciando più spazio alla cura del design e alla qualità visiva del documento.</p>
+        </div>
+    </div>
+
+    <div class="project-credits reveal">
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.design">Design</p>
+            <p class="credit-name">Andrea Ghirardi</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="ercos.credit.artdir">Direzione creativa</p>
+            <p class="credit-name">Marco Strina</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.photo">Fotografia</p>
+            <p class="credit-name">Studio Odeon</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="ercos.credit.styling">Styling</p>
+            <p class="credit-name">Sissi Valassina</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.year">Anno</p>
+            <p class="credit-name">2025</p>
+        </div>
+    </div>
+
+    <a href="whateverdev.html" class="next-project reveal">
+        <div>
+            <p class="next-label" data-i18n="project.next.label">Prossimo progetto</p>
+            <p class="next-title" data-i18n="ercos.next.title">WhateverDev()</p>
+        </div>
+        <span class="next-arrow">→</span>
+    </a>
+
+    <footer>
+        <p>© 2026 Andrea Ghirardi</p>
+        <p data-i18n="footer.tagline">Progettato con cura</p>
+        <p><a href="../work.html" style="color:inherit;text-decoration:none;opacity:.6;" data-i18n="project.all">← Tutti i progetti</a></p>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav-links">
+        <a href="../work.html" data-i18n="nav.work">Lavori</a>
+        <a href="../about.html" data-i18n="nav.about">Chi sono</a>
+        <a href="../contact.html" data-i18n="nav.contact">Contatti</a>
+    </nav>
+</div>
+
+    <script src="../translations.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

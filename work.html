@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work - Andrea Ghirardi</title>
+    <link rel="stylesheet" href="style.css">
+    <script>(function(){var t=localStorage.getItem('ag-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
+    <style>
+        /* ── Work page ─────────────────────────────────────────── */
+
+        /* Page intro header */
+        .work-intro {
+            padding-top: 148px;
+            padding-bottom: 0;
+            padding-left: 56px;
+            padding-right: 56px;
+        }
+
+        .work-intro .section-head { margin-bottom: 0; }
+
+        /* Project grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+            margin-top: 3px;
+        }
+
+        .project-item {
+            position: relative;
+            overflow: hidden;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Asymmetric layout */
+        .project-item:nth-child(1) { aspect-ratio: 4/3; }
+        .project-item:nth-child(2) { aspect-ratio: 4/3; }
+        .project-item:nth-child(3) { grid-column: 1 / 3; aspect-ratio: 21/8; }
+        .project-item:nth-child(4) { aspect-ratio: 4/3; }
+        .project-item:nth-child(5) { aspect-ratio: 4/3; }
+        .project-item:nth-child(6) { grid-column: 1 / 3; aspect-ratio: 21/8; }
+
+        .project-bg {
+            position: absolute;
+            inset: 0;
+            transition: transform .85s cubic-bezier(.16,1,.3,1);
+        }
+
+        .project-item:hover .project-bg { transform: scale(1.06); }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(9,9,10,.88) 0%, rgba(9,9,10,.08) 55%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 36px;
+            opacity: 0;
+            transition: opacity .45s ease;
+        }
+
+        .project-item:hover .project-overlay { opacity: 1; }
+
+        .project-num {
+            font-size: 10px;
+            letter-spacing: .2em;
+            color: var(--accent);
+            margin-bottom: 6px;
+            transform: translateY(14px);
+            transition: transform .45s cubic-bezier(.16,1,.3,1) .04s;
+        }
+
+        .project-name {
+            font-family: var(--serif);
+            font-size: clamp(28px, 3.5vw, 52px);
+            font-weight: 600;
+            line-height: 1.05;
+            margin-bottom: 10px;
+            color: #EDE9E0;
+            transform: translateY(14px);
+            transition: transform .45s cubic-bezier(.16,1,.3,1) .08s;
+        }
+
+        .project-cat {
+            font-size: 11px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(237,233,224,.6);
+            transform: translateY(14px);
+            transition: transform .45s cubic-bezier(.16,1,.3,1) .12s;
+        }
+
+        .project-item:hover .project-num,
+        .project-item:hover .project-name,
+        .project-item:hover .project-cat { transform: translateY(0); }
+
+        .project-arrow {
+            position: absolute;
+            top: 32px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(0,204,255,.45);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 18px;
+            opacity: 0;
+            transform: scale(.7) rotate(-45deg);
+            transition: opacity .4s ease, transform .45s cubic-bezier(.16,1,.3,1);
+        }
+
+        .project-item:hover .project-arrow {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* Placeholder label (center of card) */
+        .project-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: .5;
+            pointer-events: none;
+        }
+
+        /* Footer spacing */
+        .work-footer-gap { padding-bottom: 72px; }
+
+        /* ── Responsive ─────────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .work-intro { padding: 108px 28px 0; }
+
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-item:nth-child(3),
+            .project-item:nth-child(6) {
+                grid-column: 1;
+                aspect-ratio: 4/3;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor"      id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="nav">
+        <a href="index.html" class="nav-logo">Andrea Ghirardi</a>
+        <ul class="nav-links">
+            <li><a href="work.html"    class="active" data-i18n="nav.work">Lavori</a></li>
+            <li><a href="about.html"   data-i18n="nav.about">Chi sono</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <span class="lang-sep">/</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+    </nav>
+
+    <!-- Page header -->
+    <div class="work-intro">
+        <div class="section-head reveal">
+            <h1 class="section-title" data-i18n="work.section.title">Lavori selezionati</h1>
+            <span class="section-label" data-i18n="work.section.label">06 Progetti</span>
+        </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="projects-grid">
+
+        <a href="projects/ercos.html" class="project-item reveal">
+            <div class="project-bg" style="background: #130E08; background-image: url('projects/images/ercos/cover.jpg'); background-size: cover; background-position: center top;"></div>
+            <div class="project-overlay">
+                <span class="project-num">01</span>
+                <h2 class="project-name">Ercos</h2>
+                <p  class="project-cat" data-i18n="work.p2.cat">Design editoriale</p>
+            </div>
+            <span class="project-arrow">→</span>
+        </a>
+
+        <a href="projects/whateverdev.html" class="project-item reveal">
+            <div class="project-bg" style="background: #C80800; background-image: url('projects/images/whateverdev/cover.jpg'); background-size: cover; background-position: center top;"></div>
+            <div class="project-overlay">
+                <span class="project-num">02</span>
+                <h2 class="project-name">WhateverDev()</h2>
+                <p  class="project-cat" data-i18n="work.p7.cat">Vibe Coding</p>
+            </div>
+            <span class="project-arrow">→</span>
+        </a>
+
+        <a href="projects/gog.html" class="project-item reveal">
+            <div class="project-bg" style="background: #1B1714; background-image: url('projects/images/gog/cover_work.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="project-overlay">
+                <span class="project-num">03</span>
+                <h2 class="project-name">GOG WUP</h2>
+                <p  class="project-cat" data-i18n="work.p9.cat">Visual Identity &amp; Exhibition</p>
+            </div>
+            <span class="project-arrow">→</span>
+        </a>
+
+        <a href="projects/magazine.html" class="project-item reveal">
+            <div class="project-bg" style="background: #6E70B0; background-image: url('projects/images/magazine/cover.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="project-overlay">
+                <span class="project-num">04</span>
+                <h2 class="project-name">Postcards from the Future</h2>
+                <p  class="project-cat" data-i18n="work.p8.cat">Design editoriale</p>
+            </div>
+            <span class="project-arrow">→</span>
+        </a>
+
+        <a href="projects/kleis.html" class="project-item reveal">
+            <div class="project-bg" style="background: #22273D; background-image: url('projects/images/kleis/brand/website.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="project-overlay">
+                <span class="project-num">05</span>
+                <h2 class="project-name">Kleis</h2>
+                <p  class="project-cat" data-i18n="work.p1.cat">Brand Identity &amp; Product Design</p>
+            </div>
+            <span class="project-arrow">→</span>
+        </a>
+
+        <a href="projects/baldinini.html" class="project-item reveal">
+            <div class="project-bg" style="background: #140A07; background-image: url('projects/images/baldinini/hero.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="project-overlay">
+                <span class="project-num">06</span>
+                <h2 class="project-name">Baldinini</h2>
+                <p  class="project-cat" data-i18n="bald.hero.cat">Packaging Design &amp; Brand Application</p>
+            </div>
+            <span class="project-arrow">→</span>
+        </a>
+
+    </div>
+
+    <div class="work-footer-gap"></div>
+
+    <footer>
+        <p>© 2026 Andrea Ghirardi</p>
+        <p data-i18n="footer.tagline">Progettato con cura</p>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav-links">
+        <a href="work.html" data-i18n="nav.work">Lavori</a>
+        <a href="about.html" data-i18n="nav.about">Chi sono</a>
+        <a href="contact.html" data-i18n="nav.contact">Contatti</a>
+    </nav>
+</div>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

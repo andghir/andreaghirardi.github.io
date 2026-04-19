@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOG WUP · Andrea Ghirardi</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>(function(){var t=localStorage.getItem('ag-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
+    <style>
+        /* ── Hero ───────────────────────────────────────────── */
+        .c-gog { background-color: #1B1714; }
+
+        /* ── Section part divider ────────────────────────────── */
+        .project-part {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 72px 56px 0;
+        }
+        .project-part-num {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .project-part-label {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--fg);
+            flex-shrink: 0;
+        }
+        .project-part-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Logo display ────────────────────────────────────── */
+        .logo-display {
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 56px;
+        }
+        .logo-display img {
+            width: min(380px, 55%);
+            height: auto;
+            display: block;
+        }
+        [data-theme="light"] .logo-dark  { display: none; }
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+
+        /* ── Poster row: proportional sizes, bottom-aligned ──── */
+        .poster-row {
+            display: flex;
+            gap: 3px;
+            align-items: flex-end;
+        }
+        .poster-row .poster-l { flex: 0 0 calc(40.8% - 2px); }
+        .poster-row .poster-m { flex: 0 0 calc(32.7% - 2px); }
+        .poster-row .poster-s { flex: 0 0 calc(26.5% - 2px); }
+        .poster-row img { width: 100%; height: auto; display: block; }
+
+        /* ── Infographic + tags side by side ─────────────────── */
+        .infographic-outer {
+            display: grid;
+            grid-template-columns: 1fr minmax(0, 820px) 1fr;
+        }
+        .infographic-row {
+            grid-column: 2;
+            display: flex;
+            gap: 3px;
+            align-items: flex-start;
+            line-height: 0;
+        }
+        .infographic-row .infographic-col {
+            flex: 0 0 calc(68% - 2px);
+        }
+        .infographic-row .tags-col {
+            flex: 0 0 calc(32% - 1px);
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .infographic-row img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ── Tag display: centred, one or two tags ───────────── */
+        .tag-display {
+            display: grid;
+            grid-template-columns: 1fr minmax(0, 560px) 1fr;
+            background: var(--bg);
+            padding: 64px 0;
+        }
+        .tag-display .tag-inner {
+            grid-column: 2;
+        }
+        .tag-display .tag-inner-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+        }
+        .tag-display img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ── Booklet spreads: side by side ───────────────────── */
+        .spreads-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+            line-height: 0;
+        }
+        .spreads-row img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ── Booklet cover centred ───────────────────────────── */
+        .cover-wrap {
+            display: grid;
+            grid-template-columns: 1fr minmax(0, 440px) 1fr;
+            background: var(--bg);
+            padding: 72px 0;
+        }
+        .cover-wrap .cover-inner {
+            grid-column: 2;
+            aspect-ratio: 2/3;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 120px rgba(0,0,0,.65);
+        }
+        [data-theme="light"] .cover-wrap .cover-inner {
+            box-shadow: 0 24px 80px rgba(0,0,0,.35), 0 8px 24px rgba(0,0,0,.18);
+        }
+        .cover-wrap .img-bg { position: absolute; inset: 0; }
+
+        /* ── Meta & credits ──────────────────────────────────── */
+        .project-meta    { grid-template-columns: repeat(5, 1fr); }
+        .project-credits {
+            grid-template-columns: repeat(4, 1fr);
+            row-gap: 40px;
+        }
+        .project-credits .credit-item:nth-child(5) {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        @media (max-width: 900px) {
+            .project-part    { padding: 48px 28px 0; }
+            .logo-display    { padding: 56px 28px; }
+            .logo-display img { width: min(280px, 70%); }
+            .tag-display     { grid-template-columns: 1fr; padding: 48px 28px; }
+            .tag-display .tag-inner { grid-column: 1; max-width: 220px; margin: 0 auto; }
+            .cover-wrap      { grid-template-columns: 1fr; padding: 48px 28px; }
+            .cover-wrap .cover-inner { grid-column: 1; max-width: 320px; margin: 0 auto; }
+            .project-meta    { grid-template-columns: 1fr 1fr 1fr; }
+            .project-credits { grid-template-columns: 1fr 1fr 1fr; }
+            .infographic-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body class="project-page">
+
+    <div class="cursor"      id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="nav">
+        <a href="../index.html" class="nav-logo">Andrea Ghirardi</a>
+        <ul class="nav-links">
+            <li><a href="../work.html"    data-i18n="nav.work">Lavori</a></li>
+            <li><a href="../about.html"   data-i18n="nav.about">Chi sono</a></li>
+            <li><a href="../contact.html" data-i18n="nav.contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <span class="lang-sep">/</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+    </nav>
+
+    <div class="project-hero">
+        <div class="project-hero-bg c-gog"></div>
+        <div class="project-hero-gradient"></div>
+        <a href="../work.html" class="project-breadcrumb" data-i18n="project.back">← Tutti i lavori</a>
+        <div class="project-hero-content">
+            <p class="project-hero-num">03 / 06</p>
+            <h1 class="project-hero-title">GOG WUP</h1>
+            <p class="project-hero-cat" data-i18n="gog.hero.cat">Visual Identity &amp; Exhibition Design</p>
+        </div>
+    </div>
+
+    <div class="project-meta">
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="mag.meta.uni.label">Università</p>
+            <p class="meta-value">Libera Università di Bolzano</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="mag.credit.corso">Corso</p>
+            <p class="meta-value">WUP, Visual Communication &amp; Product Design</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="gog.meta.ruolo.label">Ruolo</p>
+            <p class="meta-value" data-i18n="gog.meta.ruolo.value">Visual Identity</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.category">Categoria</p>
+            <p class="meta-value" data-i18n="gog.meta.cat">Visual Identity &amp; Exhibition Design</p>
+        </div>
+        <div class="meta-item reveal">
+            <p class="meta-label" data-i18n="project.meta.year">Anno</p>
+            <p class="meta-value">2025</p>
+        </div>
+    </div>
+
+    <div class="project-overview reveal">
+        <p class="overview-label" data-i18n="project.overview.label">Panoramica</p>
+        <p class="overview-text" data-i18n="gog.overview">
+            GOG, Gäste Ospiti Guests, è la mostra di fine semestre della Facoltà di Design e Arti della Libera Università di Bolzano: l'università apre le porte al pubblico e gli studenti espongono il lavoro svolto lungo il semestre. Il WUP è il Warm-Up Project, il primo semestre del primo anno di Design. Ho contribuito alla visual identity complessiva del WUP con il sistema tipografico, i poster per la sezione Product Design, il booklet di WhateverDev(), l'infografica per la collaborazione con Geometria Descrittiva e le etichette per i modelli in cartone, un sistema data-driven generato a partire dai dati degli studenti.
+        </p>
+    </div>
+
+    <div class="project-toc reveal">
+        <span class="toc-heading" data-i18n="project.toc.label">In questo progetto</span>
+        <a href="#part-1" class="toc-item">
+            <span class="toc-num">01</span>
+            <span class="toc-name" data-i18n="gog.part1.label">Visual Identity</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-2" class="toc-item">
+            <span class="toc-num">02</span>
+            <span class="toc-name" data-i18n="gog.part2.label">Product Design</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-3" class="toc-item">
+            <span class="toc-num">03</span>
+            <span class="toc-name" data-i18n="gog.part3.label">WhateverDev()</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+        <a href="#part-4" class="toc-item">
+            <span class="toc-num">04</span>
+            <span class="toc-name" data-i18n="gog.part4.label">(Im)possible Representation</span>
+            <span class="toc-arrow">↓</span>
+        </a>
+    </div>
+
+    <!-- ── PARTE 01 · VISUAL IDENTITY ────────────────────────────────── -->
+
+    <div id="part-1" class="project-part reveal">
+        <span class="project-part-num">01</span>
+        <span class="project-part-label" data-i18n="gog.part1.label">Visual Identity</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="logo-display reveal">
+        <img class="logo-dark" src="images/gog/logo_white.svg" alt="Logo WUP">
+        <img class="logo-light" src="images/gog/logo.svg" alt="Logo WUP">
+    </div>
+    <p class="img-caption reveal" data-i18n="gog.caption.1">Logo WUP, sistema modulare e geometrico</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="gog.identity.body">
+            <p>Il sistema visivo del WUP nasce da una domanda semplice: come rendere riconoscibile un progetto collettivo senza soffocarne la diversità? Il logo, costruito su moduli geometrici sovrapposti che richiamano la pixel art e la griglia cartesiana, diventa il filo conduttore di tutti i materiali espositivi.</p>
+            <p>Il sistema tipografico si costruisce su un contrasto preciso: un sans-serif geometrico compresso per i titoli, leggibile a distanza e su supporti fisici; un corpo testo in famiglia compatibile per le didascalie e i testi di sala. La scelta esclude qualsiasi decorazione: il peso dell'esposizione lo portano i lavori degli studenti, non il sistema visivo.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 02 · PRODUCT DESIGN ─────────────────────────────────── -->
+
+    <div id="part-2" class="project-part reveal">
+        <span class="project-part-num">02</span>
+        <span class="project-part-label" data-i18n="gog.part2.label">Product Design</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="poster-row reveal">
+        <div class="poster-l"><img src="images/gog/poster_pd-1.jpg" alt="Poster Large"></div>
+        <div class="poster-m"><img src="images/gog/poster_pd-2.jpg" alt="Poster Medium"></div>
+        <div class="poster-s"><img src="images/gog/poster_pd-3.jpg" alt="Poster Small"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="gog.caption.2">Poster Large, Medium, Small, tre grammature di cartone</p>
+
+    <div class="tag-display reveal">
+        <div class="tag-inner tag-inner-2">
+            <img src="images/gog/tag_taccia.jpg" alt="Etichetta Taccia">
+            <img src="images/gog/tag_echo_ears.jpg" alt="Etichetta Echo Ears">
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="gog.caption.3">Etichette modelli Medium e Small, Sistema data-driven</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="gog.pd.body">
+            <p>I tre poster corrispondono ai tre esercizi del corso: Large, Medium, Small. Il formato si riduce da esercizio a esercizio, non come convenzione, ma come citazione della filosofia che guida il corso: scala, proporzione, riduzione progressiva. Ogni poster è stampato sul cartone utilizzato per costruire i modelli: kraft grezzo per Large, Finnish cardboard per Medium, cartone grigio riciclato per Small. Il materiale del progetto diventa il supporto del poster.</p>
+            <p>Le etichette per i modelli sono state generate con un sistema data-driven: partendo da un file CSV con tutti i dati degli studenti e degli oggetti, uno script ha popolato automaticamente le variabili tipografiche di ciascuna etichetta, nome dell'oggetto, anno, descrizione trilingue, nomi degli studenti, eliminando la gestione manuale di centinaia di varianti e riducendo a zero il margine di errore.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 03 · WHATEVERDEV() ───────────────────────────────────── -->
+
+    <div id="part-3" class="project-part reveal">
+        <span class="project-part-num">03</span>
+        <span class="project-part-label" data-i18n="gog.part3.label">WhateverDev()</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="img-full reveal">
+        <div class="img-bg" style="background-image: url('images/gog/room_whateverdev.jpg');"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="gog.caption.room">Allestimento della stanza WhateverDev(), Virginia Dobos</p>
+
+    <div class="cover-wrap reveal">
+        <div class="cover-inner">
+            <div class="img-bg" style="background-image: url('images/gog/booklet_01.jpg'); background-size: cover; background-position: center top;"></div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="gog.caption.4">whateverDev(), copertina del booklet di visual identity del progetto</p>
+
+    <div class="spreads-row reveal">
+        <img src="images/gog/booklet_04-05.jpg" alt="Booklet pagine 4-5">
+        <img src="images/gog/booklet_08-09.jpg" alt="Booklet pagine 8-9">
+    </div>
+    <p class="img-caption reveal" data-i18n="gog.caption.spreads">Estratto del booklet</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="gog.booklet.body">
+            <p>Il booklet raccoglie e documenta l'intero percorso del workshop WhateverDev(): i prompt, i disegni procedurali degli studenti e gli output dei quattro tool sviluppati in p5.js. La copertina è stata realizzata con uno script che combinava casualmente i disegni fatti a mano, tutti scansionati, per generare nuove composizioni: un atto generativo anche nella fase di design.</p>
+            <p>In occasione del GOG ho distribuito il booklet ai visitatori come guida al progetto: il passaggio dal disegno procedurale analogico al vibe coding, i quattro tool, e i dati raccolti da Rocco Lorenzo Modugno e Andrea Maffei sul senso di controllo degli studenti e sull'authorship nei progetti generati con l'AI.</p>
+        </div>
+    </div>
+
+    <!-- ── PARTE 04 · (IM)POSSIBLE REPRESENTATION ────────────────────── -->
+
+    <div id="part-4" class="project-part reveal">
+        <span class="project-part-num">04</span>
+        <span class="project-part-label" data-i18n="gog.part4.label">(Im)possible Representation</span>
+        <span class="project-part-line"></span>
+    </div>
+
+    <div class="img-full reveal">
+        <div class="img-bg" style="background-image: url('images/gog/room_desc.jpg');"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="gog.caption.room.desc">La stanza (Im)possible Representation al GOG</p>
+
+    <div class="infographic-outer">
+        <div class="infographic-row reveal">
+            <div class="infographic-col">
+                <img src="images/gog/infografica.jpg" alt="(Im)possible Representation infografica">
+            </div>
+            <div class="tags-col">
+                <img src="images/gog/tag_desc_1.jpg" alt="Targhetta oggetto">
+                <img src="images/gog/tag_desc_2.jpg" alt="Targhetta descrizione">
+            </div>
+        </div>
+    </div>
+    <p class="img-caption reveal" data-i18n="gog.caption.8">(Im)possible Representation, infografica e targhette degli oggetti</p>
+
+    <div class="img-full reveal">
+        <div class="img-bg" style="background-image: url('images/gog/room_banner.jpg');"></div>
+    </div>
+    <p class="img-caption reveal" data-i18n="gog.caption.banner">Poster e banner, Samuele Mogno</p>
+
+    <div class="project-text reveal">
+        <p class="project-text-label" data-i18n="project.approach.label">Approccio</p>
+        <div class="project-text-body" data-i18n="gog.desc.body">
+            <p>La collaborazione tra il gruppo di Visual Communication e il corso di Geometria Descrittiva ha prodotto una mostra dedicata al tema della rappresentazione: come cambia il disegno quando passa dalla mano alla macchina, dalla geometria all'intelligenza artificiale, fino alla stampa 3D. Il percorso si articola in sei livelli, da Vettori e Traduzione Visiva al Playful Coding, che tracciano una progressione dall'analogico al generativo.</p>
+            <p>Ho progettato l'infografica all'entrata della stanza, un diagramma dei sei livelli espositivi che orienta il visitatore nel percorso didattico, e le targhette per ogni studente esposto, identificando l'oggetto, l'anno, e i componenti del gruppo di lavoro. Anche qui il sistema è data-driven: un file di dati, uno script, zero errori manuali.</p>
+        </div>
+    </div>
+
+    <div class="project-credits reveal">
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="mag.credit.uni">Università</p>
+            <p class="credit-name">Libera Università di Bolzano</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="gog.credit.corsi">Corsi</p>
+            <p class="credit-name">WUP - Visual Communication<br>&amp; Product Design<br>Descriptive Geometry</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="gog.credit.gruppo">Gruppo</p>
+            <p class="credit-name">Andrea Ghirardi<br>Virginia Dobos<br>Samuele Mogno<br>Emanuel Kohlschitter<br>Sonja Tessaro<br>Franziska Fischer<br>Elias Bschorr<br>Carmen Anthea Alcaraz Bracho</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="gog.credit.facilitatori">Facilitatori e Docenti WUP - Visual Communication</p>
+            <p class="credit-name">Antonino Benincasa<br>Rocco Lorenzo Modugno<br>Andrea Maffei</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="gog.credit.docenti.pd">Docenti WUP - Product Design</p>
+            <p class="credit-name">Alessandro Mason<br>Camilo Ayala Garcia<br>Stefania Rigoni<br>Amedeo Bonini</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="gog.credit.docente.desc">Docente Descriptive Geometry</p>
+            <p class="credit-name">Mustapha El Moussaoui</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.photo">Fotografia</p>
+            <p class="credit-name">Andrea Maffei</p>
+        </div>
+        <div class="credit-item">
+            <p class="credit-role" data-i18n="project.credit.year">Anno</p>
+            <p class="credit-name">2025</p>
+        </div>
+    </div>
+
+    <a href="magazine.html" class="next-project reveal">
+        <div>
+            <p class="next-label" data-i18n="project.next.label">Prossimo progetto</p>
+            <p class="next-title" data-i18n="gog.next.title">Postcards from the Future</p>
+        </div>
+        <span class="next-arrow">→</span>
+    </a>
+
+    <footer>
+        <p>© 2026 Andrea Ghirardi</p>
+        <p data-i18n="footer.tagline">Progettato con cura</p>
+        <p><a href="../work.html" style="color:inherit;text-decoration:none;opacity:.6;" data-i18n="project.all">← Tutti i progetti</a></p>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav-links">
+        <a href="../work.html" data-i18n="nav.work">Lavori</a>
+        <a href="../about.html" data-i18n="nav.about">Chi sono</a>
+        <a href="../contact.html" data-i18n="nav.contact">Contatti</a>
+    </nav>
+</div>
+
+    <script src="../translations.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
