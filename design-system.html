@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System – Andrea Ghirardi</title>
+    <link rel="stylesheet" href="style.css">
+    <script>document.documentElement.setAttribute('data-theme','light');</script>
+    <style>
+        body { cursor: auto; }
+
+        /* ── Layout ── */
+        .ds-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 140px 56px 120px;
+        }
+
+        /* ── Header ── */
+        .ds-header {
+            border-top: 1px solid var(--border);
+            padding-top: 28px;
+            margin-bottom: 96px;
+        }
+
+        .ds-title {
+            font-family: var(--serif);
+            font-size: clamp(48px, 7vw, 96px);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1;
+            letter-spacing: -.02em;
+            margin-bottom: 20px;
+        }
+
+        .ds-subtitle {
+            font-size: 11px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── Section ── */
+        .ds-section {
+            margin-bottom: 96px;
+        }
+
+        .ds-section-label {
+            font-size: 10px;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 32px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ── Color swatches ── */
+        .ds-colors {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3px;
+        }
+
+        .ds-swatch {
+            aspect-ratio: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 16px;
+        }
+
+        .ds-swatch-name {
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .ds-swatch-value {
+            font-size: 10px;
+            letter-spacing: .08em;
+            opacity: .7;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* ── Type scale ── */
+        .ds-type-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            align-items: baseline;
+            gap: 32px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ds-type-meta {
+            font-size: 10px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ── Spacing ── */
+        .ds-spacing-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ds-spacing-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .ds-spacing-bar {
+            background: var(--accent);
+            height: 4px;
+            opacity: .7;
+            flex-shrink: 0;
+        }
+
+        .ds-spacing-label {
+            font-size: 10px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        /* ── Components ── */
+        .ds-component-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ds-component-label {
+            font-size: 10px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            width: 140px;
+            flex-shrink: 0;
+        }
+
+        /* CTA primary (copied from site) */
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--accent);
+            color: var(--bg);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-secondary {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Skill tag */
+        .ds-tag {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            font-size: 10px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* Nav link preview */
+        .ds-nav-link {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--fg);
+            text-decoration: none;
+            opacity: .45;
+            position: relative;
+        }
+
+        /* Project card preview */
+        .ds-card {
+            aspect-ratio: 4/3;
+            background: #1B1714;
+            position: relative;
+            overflow: hidden;
+            width: 240px;
+        }
+
+        .ds-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(9,9,10,.88) 0%, rgba(9,9,10,.08) 55%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+        }
+
+        .ds-card-num {
+            font-size: 10px;
+            letter-spacing: .2em;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .ds-card-name {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.05;
+            color: #EDE9E0;
+            margin-bottom: 6px;
+        }
+
+        .ds-card-cat {
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(237,233,224,.6);
+        }
+
+        /* Section head preview */
+        .ds-section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+        .ds-section-title {
+            font-family: var(--serif);
+            font-size: clamp(28px, 4vw, 52px);
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: -.02em;
+        }
+
+        .ds-section-num {
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── Motion ── */
+        .ds-motion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+        }
+
+        .ds-motion-item {
+            padding: 28px;
+            border: 1px solid var(--border);
+        }
+
+        .ds-motion-name {
+            font-size: 10px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .ds-motion-value {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--fg);
+            margin-bottom: 4px;
+        }
+
+        .ds-motion-desc {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        /* ── Grid ── */
+        .ds-grid-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+            margin-bottom: 12px;
+        }
+
+        .ds-grid-cell {
+            height: 80px;
+            background: rgba(0,204,255,.06);
+            border: 1px solid rgba(0,204,255,.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .ds-grid-cell.full {
+            grid-column: 1 / 3;
+        }
+
+        /* ── Theme toggle ── */
+        .ds-theme-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .ds-theme-btn {
+            padding: 10px 24px;
+            border: 1px solid var(--border);
+            background: none;
+            color: var(--fg);
+            font-family: var(--sans);
+            font-size: 10px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: border-color .25s ease, color .25s ease;
+        }
+
+        .ds-theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .ds-theme-btn.active { border-color: var(--accent); color: var(--accent); }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .ds-wrap { padding: 120px 28px 80px; }
+            .ds-colors { grid-template-columns: repeat(3, 1fr); }
+            .ds-type-row { grid-template-columns: 1fr; gap: 8px; }
+            .ds-motion-grid { grid-template-columns: 1fr; }
+            .ds-component-label { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="nav">
+        <a href="index.html" class="nav-logo">Andrea Ghirardi</a>
+        <ul class="nav-links">
+            <li><a href="work.html" data-i18n="nav.work">Lavori</a></li>
+            <li><a href="about.html" data-i18n="nav.about">Chi sono</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <span class="lang-sep">/</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <div class="ds-wrap">
+
+        <!-- Header -->
+        <div class="ds-header">
+            <h1 class="ds-title">Design System</h1>
+            <p class="ds-subtitle">andreaghirardi.com &nbsp;·&nbsp; 2026</p>
+        </div>
+
+        <!-- 01 · Colors -->
+        <div class="ds-section">
+            <p class="ds-section-label">01 · Colori</p>
+            <div class="ds-colors">
+                <div class="ds-swatch" style="background:#09090A;">
+                    <span class="ds-swatch-name" style="color:#EDE9E0;">Background</span>
+                    <span class="ds-swatch-value" style="color:#EDE9E0;">#09090A</span>
+                </div>
+                <div class="ds-swatch" style="background:#EDE9E0;">
+                    <span class="ds-swatch-name" style="color:#09090A;">Foreground</span>
+                    <span class="ds-swatch-value" style="color:#09090A;">#EDE9E0</span>
+                </div>
+                <div class="ds-swatch" style="background:#00CCFF;">
+                    <span class="ds-swatch-name" style="color:#09090A;">Accent</span>
+                    <span class="ds-swatch-value" style="color:#09090A;">#00CCFF</span>
+                </div>
+                <div class="ds-swatch" style="background:#F5F0E8; border: 1px solid rgba(14,13,12,.1);">
+                    <span class="ds-swatch-name" style="color:#0E0D0C;">Background Light</span>
+                    <span class="ds-swatch-value" style="color:#0E0D0C;">#F5F0E8</span>
+                </div>
+                <div class="ds-swatch" style="background:#0099CC;">
+                    <span class="ds-swatch-name" style="color:#F5F0E8;">Accent Light</span>
+                    <span class="ds-swatch-value" style="color:#F5F0E8;">#0099CC</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02 · Typography -->
+        <div class="ds-section">
+            <p class="ds-section-label">02 · Tipografia</p>
+
+            <div class="ds-type-row">
+                <div class="ds-type-meta">
+                    Display<br>Cormorant Garamond<br>700 · italic
+                </div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(48px,7vw,96px); font-weight:700; font-style:italic; line-height:1; letter-spacing:-.025em;">Andrea</div>
+            </div>
+
+            <div class="ds-type-row">
+                <div class="ds-type-meta">
+                    Heading<br>Cormorant Garamond<br>300 · italic
+                </div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(32px,5vw,72px); font-weight:300; font-style:italic; line-height:1.1; letter-spacing:-.02em;">Lavori selezionati</div>
+            </div>
+
+            <div class="ds-type-row">
+                <div class="ds-type-meta">
+                    Subheading<br>Cormorant Garamond<br>600 · upright
+                </div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3.5vw,52px); font-weight:600; line-height:1.05;">Ercos SpA</div>
+            </div>
+
+            <div class="ds-type-row">
+                <div class="ds-type-meta">
+                    Body<br>DM Sans<br>300 · 16px
+                </div>
+                <div style="font-size:16px; font-weight:300; line-height:1.82; color:rgba(var(--fg-rgb),.7); max-width:600px;">Costruisco identità visive, sistemi editoriali e packaging, online e offline, partendo sempre dalla stessa domanda: cosa deve comunicare, e a chi?</div>
+            </div>
+
+            <div class="ds-type-row">
+                <div class="ds-type-meta">
+                    Label<br>DM Sans<br>400 · 11px<br>uppercase
+                </div>
+                <div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);">Brand Identity &nbsp;·&nbsp; Editorial Design</div>
+            </div>
+
+            <div class="ds-type-row">
+                <div class="ds-type-meta">
+                    Micro<br>DM Sans<br>500 · 10px<br>uppercase
+                </div>
+                <div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--accent);">01 / 06</div>
+            </div>
+        </div>
+
+        <!-- 03 · Spacing -->
+        <div class="ds-section">
+            <p class="ds-section-label">03 · Spaziatura</p>
+            <div class="ds-spacing-grid">
+                <div class="ds-spacing-row">
+                    <div class="ds-spacing-bar" style="width:3px;"></div>
+                    <span class="ds-spacing-label">3px — Gap griglie</span>
+                </div>
+                <div class="ds-spacing-row">
+                    <div class="ds-spacing-bar" style="width:16px;"></div>
+                    <span class="ds-spacing-label">16px — Padding tag</span>
+                </div>
+                <div class="ds-spacing-row">
+                    <div class="ds-spacing-bar" style="width:28px;"></div>
+                    <span class="ds-spacing-label">28px — Padding mobile</span>
+                </div>
+                <div class="ds-spacing-row">
+                    <div class="ds-spacing-bar" style="width:32px;"></div>
+                    <span class="ds-spacing-label">32px — Padding nav desktop</span>
+                </div>
+                <div class="ds-spacing-row">
+                    <div class="ds-spacing-bar" style="width:56px;"></div>
+                    <span class="ds-spacing-label">56px — Padding orizzontale desktop</span>
+                </div>
+                <div class="ds-spacing-row">
+                    <div class="ds-spacing-bar" style="width:80px;"></div>
+                    <span class="ds-spacing-label">80px — Section gap</span>
+                </div>
+                <div class="ds-spacing-row">
+                    <div class="ds-spacing-bar" style="width:148px;"></div>
+                    <span class="ds-spacing-label">148px — Padding-top pagine (nav offset)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04 · Grid -->
+        <div class="ds-section">
+            <p class="ds-section-label">04 · Griglie</p>
+            <p style="font-size:11px; color:var(--muted); letter-spacing:.1em; margin-bottom:16px; text-transform:uppercase;">Work page — 2 colonne + full-width</p>
+            <div class="ds-grid-demo">
+                <div class="ds-grid-cell">4 / 3</div>
+                <div class="ds-grid-cell">4 / 3</div>
+                <div class="ds-grid-cell full">21 / 8</div>
+                <div class="ds-grid-cell">4 / 3</div>
+                <div class="ds-grid-cell">4 / 3</div>
+                <div class="ds-grid-cell full">21 / 8</div>
+            </div>
+            <p style="font-size:10px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase;">Gap: 3px · Breakpoint collasso: 900px</p>
+        </div>
+
+        <!-- 05 · Components -->
+        <div class="ds-section">
+            <p class="ds-section-label">05 · Componenti</p>
+
+            <div class="ds-component-row">
+                <span class="ds-component-label">CTA primario</span>
+                <button class="cta-primary">Vedi i lavori &nbsp;→</button>
+            </div>
+
+            <div class="ds-component-row">
+                <span class="ds-component-label">CTA secondario</span>
+                <button class="cta-secondary">Chi sono</button>
+            </div>
+
+            <div class="ds-component-row">
+                <span class="ds-component-label">Tag / Skill</span>
+                <span class="ds-tag">Brand Identity</span>
+                <span class="ds-tag">Editorial Design</span>
+                <span class="ds-tag">Typography</span>
+            </div>
+
+            <div class="ds-component-row">
+                <span class="ds-component-label">Nav link</span>
+                <a class="ds-nav-link" href="#">Lavori</a>
+                <a class="ds-nav-link" href="#" style="opacity:1;">Chi sono (active)</a>
+                <a class="ds-nav-link" href="#">Contatti</a>
+            </div>
+
+            <div class="ds-component-row">
+                <span class="ds-component-label">Section head</span>
+                <div style="flex:1;">
+                    <div class="ds-section-head">
+                        <h2 class="ds-section-title">Lavori selezionati</h2>
+                        <span class="ds-section-num">06 Progetti</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ds-component-row" style="align-items:flex-start;">
+                <span class="ds-component-label">Project card</span>
+                <div class="ds-card">
+                    <div class="ds-card-overlay">
+                        <span class="ds-card-num">01</span>
+                        <h3 class="ds-card-name">Ercos</h3>
+                        <p class="ds-card-cat">Design editoriale</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 06 · Motion -->
+        <div class="ds-section">
+            <p class="ds-section-label">06 · Motion & Transizioni</p>
+            <div class="ds-motion-grid">
+                <div class="ds-motion-item">
+                    <p class="ds-motion-name">Reveal</p>
+                    <p class="ds-motion-value">opacity + translateY(24px)</p>
+                    <p class="ds-motion-value">.5s ease</p>
+                    <p class="ds-motion-desc">Usato su tutti gli elementi della pagina allo scroll</p>
+                </div>
+                <div class="ds-motion-item">
+                    <p class="ds-motion-name">Hover overlay</p>
+                    <p class="ds-motion-value">opacity .45s ease</p>
+                    <p class="ds-motion-value">scale(1.06) .85s</p>
+                    <p class="ds-motion-desc">Project card: overlay + zoom dell'immagine</p>
+                </div>
+                <div class="ds-motion-item">
+                    <p class="ds-motion-name">Easing principale</p>
+                    <p class="ds-motion-value">cubic-bezier</p>
+                    <p class="ds-motion-value">(.16, 1, .3, 1)</p>
+                    <p class="ds-motion-desc">Spring ease per slide-up e trasformazioni</p>
+                </div>
+                <div class="ds-motion-item">
+                    <p class="ds-motion-name">Nav scroll</p>
+                    <p class="ds-motion-value">padding .4s ease</p>
+                    <p class="ds-motion-value">backdrop-filter blur(24px)</p>
+                    <p class="ds-motion-desc">Nav si comprime e diventa traslucida allo scroll</p>
+                </div>
+                <div class="ds-motion-item">
+                    <p class="ds-motion-name">Ticker</p>
+                    <p class="ds-motion-value">animation: ticker</p>
+                    <p class="ds-motion-value">28s linear infinite</p>
+                    <p class="ds-motion-desc">Scorrimento continuo nella hero della homepage</p>
+                </div>
+                <div class="ds-motion-item">
+                    <p class="ds-motion-name">Hamburger</p>
+                    <p class="ds-motion-value">transform .4s</p>
+                    <p class="ds-motion-value">cubic-bezier(.16,1,.3,1)</p>
+                    <p class="ds-motion-desc">Le due linee ruotano in X all'apertura del menu</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 07 · Breakpoints -->
+        <div class="ds-section">
+            <p class="ds-section-label">07 · Breakpoint</p>
+            <div style="display:flex; flex-direction:column; gap:0;">
+                <div style="display:grid; grid-template-columns:120px 1fr; padding:16px 0; border-bottom:1px solid var(--border); align-items:center; gap:32px;">
+                    <span style="font-family:'Courier New',monospace; font-size:13px; color:var(--accent);">≤ 900px</span>
+                    <span style="font-size:13px; font-weight:300; color:rgba(var(--fg-rgb),.7);">Tablet — griglie a colonna singola, padding ridotti, nav compatta</span>
+                </div>
+                <div style="display:grid; grid-template-columns:120px 1fr; padding:16px 0; border-bottom:1px solid var(--border); align-items:center; gap:32px;">
+                    <span style="font-family:'Courier New',monospace; font-size:13px; color:var(--accent);">≤ 540px</span>
+                    <span style="font-size:13px; font-weight:300; color:rgba(var(--fg-rgb),.7);">Mobile — nav links nascosti, hamburger attivo, crediti a 1 colonna</span>
+                </div>
+                <div style="display:grid; grid-template-columns:120px 1fr; padding:16px 0; border-bottom:1px solid var(--border); align-items:center; gap:32px;">
+                    <span style="font-family:'Courier New',monospace; font-size:13px; color:var(--accent);">hover: none</span>
+                    <span style="font-size:13px; font-weight:300; color:rgba(var(--fg-rgb),.7);">Touch — cursore custom nascosto, cursor:auto ripristinato</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Andrea Ghirardi</p>
+        <p>Design System</p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
